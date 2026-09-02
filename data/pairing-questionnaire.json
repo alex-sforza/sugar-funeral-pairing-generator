@@ -1,0 +1,197 @@
+{
+  "version": "1.0.0",
+  "language": "ru",
+  "purpose": "Questionnaire model for matching a two-character relationship to the 69-song Sugar Funeral pairing catalogue.",
+  "instructions": "Answers describe the relationship, not the characters separately. The matcher should accumulate tags and then rank songs by pairing_types and themes. Questions may be multi-select unless explicitly marked single.",
+  "questions": [
+    {
+      "id": "origin",
+      "section": "Как всё началось",
+      "type": "single",
+      "question": "Как они оказались рядом?",
+      "options": [
+        {"id":"chance","label":"Случайно — судьба столкнула их лбами","tags":["fate","chance"]},
+        {"id":"mission","label":"Общее дело / миссия","tags":["mission","partnership"]},
+        {"id":"enemies","label":"Сначала они были противниками","tags":["enemies-to-lovers","rivals-to-lovers","competition"]},
+        {"id":"secret","label":"Их знакомство связано с тайной","tags":["secrets","mystery","secret-connection"]},
+        {"id":"rescue","label":"Один спас другого","tags":["rescue","hurt-comfort","devotion"]},
+        {"id":"longknown","label":"Они давно знали друг друга","tags":["friends-to-lovers","memory","longing"]},
+        {"id":"supernatural","label":"Их свела магия / проклятие / сверхъестественное","tags":["magic-romance","monster-romance","fate"]}
+      ]
+    },
+    {
+      "id": "first_move",
+      "section": "Как всё началось",
+      "type": "single",
+      "question": "Кто первым понял, что между ними что-то есть?",
+      "options": [
+        {"id":"one","label":"Первый персонаж","tags":["pursuit","devotion"]},
+        {"id":"two","label":"Второй персонаж","tags":["pursuit","devotion"]},
+        {"id":"both","label":"Они оба всё поняли одновременно","tags":["mutual-desire","mutual-obsession"]},
+        {"id":"neither","label":"Никто. Они до сих пор делают вид, что это дружба","tags":["slow-burn","tension","denial"]}
+      ]
+    },
+    {
+      "id": "core_dynamic",
+      "section": "Их динамика",
+      "type": "multi",
+      "question": "Что лучше всего описывает их динамику?",
+      "options": [
+        {"id":"slowburn","label":"Медленное сближение","tags":["slow-burn","tension","patience"]},
+        {"id":"instant","label":"Мгновенная химия","tags":["instant-attraction","rush","desire"]},
+        {"id":"rivals","label":"Соперники, которые слишком хорошо друг друга понимают","tags":["rivals-to-lovers","competition","power-struggle"]},
+        {"id":"forbidden","label":"Им нельзя быть вместе","tags":["forbidden-attraction","forbidden-love","danger"]},
+        {"id":"toxic","label":"Они знают, что друг для друга плохая идея","tags":["toxic-attraction","toxic-romance","red-flags"]},
+        {"id":"healing","label":"Они лечат друг друга от старых ран","tags":["hurt-comfort","healing-romance","mutual-healing"]},
+        {"id":"crime","label":"Они лучше всего работают как сообщники","tags":["partners-in-crime","chaos","escape"]},
+        {"id":"monster","label":"Один из них опасен / нечеловеческий, но второй принимает его","tags":["monster-romance","acceptance","dangerous-romance"]},
+        {"id":"power","label":"Между ними постоянная игра во власть","tags":["power-dynamic","power-struggle","provocation"]},
+        {"id":"obsession","label":"Это уже почти одержимость","tags":["obsessive-romance","mutual-obsession","possessive-love"]},
+        {"id":"distance","label":"Их разделяет расстояние / обстоятельства","tags":["long-distance-romance","separation","longing"]}
+      ]
+    },
+    {
+      "id": "who_does_what",
+      "section": "Их динамика",
+      "type": "matrix",
+      "question": "Кто чаще делает это?",
+      "actions": [
+        {"id":"first_move","label":"делает первый шаг","tags":["pursuit"]},
+        {"id":"tease","label":"провоцирует второго","tags":["teasing","provocation"]},
+        {"id":"jealous","label":"ревнует","tags":["jealousy","possessive-love"]},
+        {"id":"protect","label":"защищает","tags":["protective-romance","devotion"]},
+        {"id":"hide","label":"прячет чувства","tags":["guarded-heart","secrets","slow-burn"]},
+        {"id":"danger","label":"тащит второго в неприятности","tags":["danger","chaos","rebellion"]},
+        {"id":"return","label":"всегда возвращается первым","tags":["devotion","longing","doomed-romance"]}
+      ],
+      "answers":["one","two","both","neither"]
+    },
+    {
+      "id": "emotional_engine",
+      "section": "Что между ними",
+      "type": "multi",
+      "question": "Что удерживает их рядом сильнее всего?",
+      "options": [
+        {"id":"trust","label":"Доверие","tags":["trust","devotion"]},
+        {"id":"desire","label":"Физическое притяжение","tags":["desire","lust","sensual-romance"]},
+        {"id":"obsession","label":"Одержимость","tags":["obsession","fixation","possessive-love"]},
+        {"id":"shared_pain","label":"Общая боль","tags":["hurt-comfort","healing","damage"]},
+        {"id":"secrets","label":"Общая тайна","tags":["secrets","mystery","secret-connection"]},
+        {"id":"freedom","label":"Вместе они чувствуют себя свободными","tags":["freedom","escape","rebellion"]},
+        {"id":"war","label":"Они проходят через опасности вместе","tags":["battle-couple","resistance-romance","sacrifice"]},
+        {"id":"home","label":"Друг в друге они нашли дом","tags":["sanctuary","cozy-romance","healing"]}
+      ]
+    },
+    {
+      "id": "danger_level",
+      "section": "Градус отношений",
+      "type": "single",
+      "question": "Насколько опасны их отношения?",
+      "options": [
+        {"id":"1","label":"Почти безопасны","tags":["cozy-romance","healing"]},
+        {"id":"2","label":"Есть риск, но они справляются","tags":["risk","trust"]},
+        {"id":"3","label":"Опасность — часть их притяжения","tags":["dangerous-romance","dangerous-attraction"]},
+        {"id":"4","label":"Они буквально играют с огнём","tags":["fatal-attraction","toxic-attraction","risk"]},
+        {"id":"5","label":"Любовь вполне может их погубить","tags":["doomed-romance","destructive-love","fatal-attraction"]}
+      ]
+    },
+    {
+      "id": "boundary",
+      "section": "Градус отношений",
+      "type": "single",
+      "question": "Что происходит с границами между ними?",
+      "options": [
+        {"id":"respect","label":"Они бережно их уважают","tags":["trust","boundaries","healing"]},
+        {"id":"test","label":"Они постоянно проверяют границы друг друга","tags":["provocation","tension","power-dynamic"]},
+        {"id":"break","label":"Они любят нарушать правила","tags":["rule-breakers","rebellion","forbidden-attraction"]},
+        {"id":"blur","label":"Границы давно перестали существовать","tags":["obsession","mutual-obsession","toxic-romance"]}
+      ]
+    },
+    {
+      "id": "secret_truth",
+      "section": "То, что они не скажут",
+      "type": "multi",
+      "question": "Что один из них никогда не скажет вслух?",
+      "options": [
+        {"id":"love","label":"«Я тебя люблю»","tags":["devotion","confession","slow-burn"]},
+        {"id":"need","label":"«Ты мне нужен / нужна»","tags":["need","obsession","dependence"]},
+        {"id":"fear_loss","label":"«Я боюсь тебя потерять»","tags":["fear","devotion","longing"]},
+        {"id":"danger","label":"«Я опасен / опасна для тебя»","tags":["danger","monster-romance","guarded-heart"]},
+        {"id":"possess","label":"«Ты мой / моя»","tags":["possessive-love","obsession","jealousy"]},
+        {"id":"stay","label":"«Останься»","tags":["longing","devotion","separation"]}
+      ]
+    },
+    {
+      "id": "jealousy",
+      "section": "То, что они не скажут",
+      "type": "single",
+      "question": "Что происходит, когда кто-то третий проявляет интерес?",
+      "options": [
+        {"id":"none","label":"Никого не волнует","tags":["trust","secure-bond"]},
+        {"id":"silent","label":"Один молча страдает и делает вид, что всё нормально","tags":["jealousy","guarded-heart","longing"]},
+        {"id":"tease","label":"Начинается показательная игра в ревность","tags":["teasing","competition","provocation"]},
+        {"id":"claim","label":"Кто-то сразу напоминает, кому принадлежит внимание","tags":["possessive-love","obsession"]},
+        {"id":"fight","label":"Это гарантированно заканчивается скандалом","tags":["jealousy","power-struggle","toxic-romance"]}
+      ]
+    },
+    {
+      "id": "fantasy_scene",
+      "section": "Шипперский отдел",
+      "type": "multi",
+      "question": "Какую сцену вам обязательно хочется увидеть?",
+      "options": [
+        {"id":"night_talk","label":"Ночной разговор, после которого уже ничего не будет прежним","tags":["confession","intimacy","longing"]},
+        {"id":"forced_close","label":"Вынужденная близость / одна комната / одно укрытие","tags":["intimacy","tension","secret-date"]},
+        {"id":"jealous_scene","label":"Сцена ревности","tags":["jealousy","possessive-love"]},
+        {"id":"fight_kiss","label":"Ссора, которая заканчивается поцелуем","tags":["rivals-to-lovers","tension","desire"]},
+        {"id":"rescue","label":"Один спасает другого","tags":["rescue","protective-romance","devotion"]},
+        {"id":"care","label":"Один ухаживает за раненым вторым","tags":["hurt-comfort","healing-romance"]},
+        {"id":"dance","label":"Танец, который слишком похож на свидание","tags":["dance","romance","seduction"]},
+        {"id":"stay","label":"«Останься» перед расставанием","tags":["longing","doomed-romance","separation"]},
+        {"id":"reveal","label":"Они раскрывают друг другу настоящую сущность","tags":["secret-identities","truth","acceptance"]},
+        {"id":"crime","label":"Они вместе делают что-то совершенно незаконное / безумное","tags":["partners-in-crime","chaos","escape"]},
+        {"id":"finally","label":"Они наконец перестают тормозить","tags":["confession","instant-attraction","desire"]}
+      ]
+    },
+    {
+      "id": "ending",
+      "section": "Чем это пахнет",
+      "type": "single",
+      "question": "Если представить их историю как финал песни, чем она закончится?",
+      "options": [
+        {"id":"happy","label":"Они выбирают друг друга и остаются вместе","tags":["devotion","hope","partnership"]},
+        {"id":"healing","label":"Они становятся друг для друга домом","tags":["healing-romance","sanctuary","cozy-romance"]},
+        {"id":"chaos","label":"Они счастливы, но продолжают творить безумие","tags":["chaotic-romance","partners-in-crime","freedom"]},
+        {"id":"bittersweet","label":"Они любят друг друга, но обстоятельства сильнее","tags":["bittersweet","longing","doomed-romance"]},
+        {"id":"doomed","label":"Красиво, страстно и обречённо","tags":["doomed-romance","destructive-love","fatal-attraction"]},
+        {"id":"eternal","label":"Даже смерть / расстояние / время не разлучат их","tags":["eternal-love","devotion","fate"]}
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "tag_overlap_with_weighted_sections",
+    "base_weight": 1,
+    "weights": {
+      "core_dynamic": 3,
+      "emotional_engine": 3,
+      "danger_level": 2,
+      "boundary": 2,
+      "secret_truth": 2,
+      "jealousy": 2,
+      "fantasy_scene": 1.5,
+      "ending": 3,
+      "origin": 1.5,
+      "first_move": 1
+    },
+    "bonus": {
+      "exact_pairing_type_match": 5,
+      "theme_match": 2,
+      "multiple_independent_matches": 1
+    },
+    "penalty": {
+      "contradictory_ending": -3,
+      "strongly_mismatched_core_dynamic": -4
+    },
+    "result": "Return the top song plus up to four close alternatives for debugging/admin view. Public UI shows only the winner unless the user chooses to reveal alternatives."
+  }
+}
