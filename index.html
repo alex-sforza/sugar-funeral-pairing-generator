@@ -1,61 +1,37 @@
 <!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sugar Funeral — тестовый генератор v2</title>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sugar Funeral — тестовый генератор v3</title>
 <style>
-body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;background:#f4f0ee;color:#241d20}h1{margin-bottom:4px}.sub{color:#665c60}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;padding:18px;border-radius:14px;box-shadow:0 3px 15px #0001}.wide{grid-column:1/-1}label{display:block;margin:10px 0 5px;font-weight:700}select,input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}button{padding:12px 20px;border:0;border-radius:9px;cursor:pointer;font-weight:700;margin-top:15px}.result{margin-top:18px}.song{font-size:28px;font-weight:800}.quote{font-size:20px;font-style:italic;margin:12px 0}.score{font-size:13px;color:#766b70}.breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.metric{background:#f3eff0;padding:10px;border-radius:8px}.metric b{display:block;font-size:18px}.tests{font-family:monospace;white-space:pre-wrap;background:#211b1e;color:#eee;padding:15px;border-radius:10px;overflow:auto;line-height:1.45}.status{padding:10px;background:#eee7e9;border-radius:8px;margin-top:10px}@media(max-width:700px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.breakdown{grid-template-columns:1fr 1fr}}
-</style>
-</head>
-<body>
-<h1>SUGAR FUNERAL</h1><p class="sub">Тестовый генератор v2: все 69 песен + объяснимый скоринг. Проверяем механику до создания красивого интерфейса.</p>
-<div id="status" class="status">Загружаю базу песен…</div>
+body{font-family:Arial,sans-serif;max-width:1100px;margin:auto;padding:24px;background:#f4f0ee;color:#241d20}h1{margin-bottom:4px}.sub{color:#665c60}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;padding:18px;border-radius:14px;box-shadow:0 3px 15px #0001}.wide{grid-column:1/-1}label{display:block;margin:10px 0 5px;font-weight:700}select,input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}button{padding:12px 20px;border:0;border-radius:9px;cursor:pointer;font-weight:700;margin-top:15px}.result{margin-top:18px}.song{font-size:28px;font-weight:800}.quote{font-size:20px;font-style:italic;margin:12px 0}.breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.metric{background:#f3eff0;padding:10px;border-radius:8px}.metric b{display:block;font-size:18px}.tests{font-family:monospace;white-space:pre-wrap;background:#211b1e;color:#eee;padding:15px;border-radius:10px;overflow:auto;line-height:1.45}.status{padding:10px;background:#eee7e9;border-radius:8px;margin-top:10px}@media(max-width:700px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.breakdown{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<h1>SUGAR FUNERAL</h1><p class="sub">Тестовый генератор v3: 69 песен + ручные эмоциональные профили + родственные типы динамики.</p>
+<div id="status" class="status">Загружаю базу…</div>
 <div class="grid" id="app" hidden>
 <section class="card"><h2>Смысл отношений</h2>
-<label>Основная динамика</label><select id="type"><option value="enemies-to-lovers">Враги → любовники</option><option value="forbidden-attraction">Запретное влечение</option><option value="toxic-attraction">Токсичное влечение</option><option value="partners-in-crime">Сообщники</option><option value="slow-burn">Медленное сближение</option><option value="doomed-romance">Обречённый роман</option><option value="hurt-comfort">Боль и исцеление</option><option value="monster-romance">Влюбиться в чудовище</option><option value="mutual-obsession">Взаимная одержимость</option><option value="rivals-to-lovers">Соперники → любовники</option><option value="friends-to-lovers">Друзья → любовники</option><option value="protective-romance">Защитник и тот, кого защищают</option></select>
-<label>Главная сюжетная деталь</label><select id="theme"><option value="jealousy">Ревность</option><option value="obsession">Одержимость</option><option value="danger">Опасность</option><option value="secrets">Тайна</option><option value="protection">Защита</option><option value="chaos">Хаос</option><option value="trust">Доверие</option><option value="night">Ночь</option><option value="freedom">Свобода</option><option value="war">Война</option><option value="magic">Магия</option></select>
+<label>Основная динамика</label><select id="type"><option value="enemies-to-lovers">Враги → любовники</option><option value="forbidden-attraction">Запретное влечение</option><option value="toxic-attraction">Токсичное влечение</option><option value="partners-in-crime">Сообщники</option><option value="slow-burn">Медленное сближение</option><option value="doomed-romance">Обречённый роман</option><option value="hurt-comfort">Боль и исцеление</option><option value="monster-romance">Влюбиться в чудовище</option><option value="mutual-obsession">Взаимная одержимость</option><option value="rivals-to-lovers">Соперники → любовники</option><option value="friends-to-lovers">Друзья → любовники</option><option value="protective-romance">Защитник и тот, кого защищают</option><option value="secret-romance">Тайный роман</option><option value="power-dynamic">Игра во власть</option></select>
+<label>Главная сюжетная деталь</label><select id="theme"><option value="jealousy">Ревность</option><option value="obsession">Одержимость</option><option value="danger">Опасность</option><option value="secrets">Тайна</option><option value="protection">Защита</option><option value="chaos">Хаос</option><option value="trust">Доверие</option><option value="night">Ночь</option><option value="freedom">Свобода</option><option value="war">Война</option><option value="magic">Магия</option><option value="choice">Выбор</option></select>
 </section>
 <section class="card"><h2>Эмоциональный профиль</h2><div id="sliders"></div></section>
 <section class="card wide"><button id="run">ПОДОБРАТЬ ПЕСНУ</button><div id="result" class="result"></div></section>
-<section class="card wide"><h2>Контрольные тесты</h2><p>Каждый сценарий сравнивается со <b>всеми песнями из базы</b>. В результате видны TOP-5 и разложение победителя по компонентам.</p><button id="testsBtn">ЗАПУСТИТЬ 5 ТЕСТОВ</button><div id="tests" class="tests"></div></section>
+<section class="card wide"><h2>Контрольные тесты</h2><p>Все сценарии сравниваются со всеми 69 песнями. Смысл = до 50, сюжетные детали = до 20, эмоции = до 30.</p><button id="testsBtn">ЗАПУСТИТЬ 5 ТЕСТОВ</button><div id="tests" class="tests"></div></section>
 </div>
 <script>
 const dims=['romance','passion','obsession','danger','tenderness','tragedy','chaos'];
 const labels={romance:'Романтика',passion:'Страсть',obsession:'Одержимость',danger:'Опасность',tenderness:'Нежность',tragedy:'Трагичность',chaos:'Хаос'};
 const defaults={romance:7,passion:7,obsession:5,danger:5,tenderness:5,tragedy:4,chaos:5};
-let songs=[];
-function deriveProfile(s){
- const text=((s.pairing_types||[]).join(' ')+' '+(s.themes||[]).join(' ')+' '+(s.pairing_type||'')).toLowerCase();
- const p={romance:6,passion:5,obsession:4,danger:3,tenderness:4,tragedy:3,chaos:3};
- const add=(k,v)=>p[k]=Math.min(10,p[k]+v);
- if(/love|romance|devotion|любов|влеч|поцел|любовник|soulmate|сближ/.test(text)){add('romance',2);add('passion',1)}
- if(/passion|lust|desire|seduction|страст|желан|влечение|kiss|craving/.test(text))add('passion',3);
- if(/obsess|possession|одерж|possess|addiction|завис|craving/.test(text))add('obsession',3);
- if(/danger|toxic|dark|killer|murder|venom|risk|fatal|dangerous|опас|токс|яд|убий|риск|monster|predator/.test(text))add('danger',3);
- if(/tender|comfort|healing|trust|devotion|sanctuary|gentle|неж|исцел|довер|защит|comfort|soulmate/.test(text))add('tenderness',3);
- if(/doomed|tragedy|heartbreak|separation|loneliness|broken|обреч|траг|разлук|одиноч|слом/.test(text))add('tragedy',3);
- if(/chaos|wild|playful|mischief|madness|glitch|хаос|безум|шал|безум|игр/.test(text))add('chaos',3);
- return p;
-}
-function score(song,a){
- const types=new Set(song.pairing_types||[]), themes=new Set(song.themes||[]), p=deriveProfile(song);
- let semantic=types.has(a.type)?50:0;
- let detail=themes.has(a.theme)?20:0;
- let emotional=0;
- for(const d of dims) emotional+=Math.max(0,10-Math.abs(a[d]-p[d]))*0.428571;
- emotional=Math.min(30,emotional);
- const total=semantic+detail+emotional;
- const reasons=[];
- if(semantic)reasons.push('динамика: +50');
- if(detail)reasons.push('сюжетная деталь: +20');
- reasons.push('эмоциональный профиль: +'+emotional.toFixed(1));
- return {song,total,semantic,detail,emotional,profile:p,reasons};
-}
-function rank(a){return songs.map(s=>score(s,a)).sort((x,y)=>y.total-x.total)}
-function getAnswers(){const a={type:type.value,theme:theme.value};for(const d of dims)a[d]=+document.getElementById(d).value;return a}
-function render(){const r=rank(getAnswers()),w=r[0];result.innerHTML='<div class="song">'+w.song.title+'</div><div>'+w.song.album+'</div><div class="quote">«'+(w.song.quote||'')+'»</div><div class="breakdown"><div class="metric"><b>'+w.semantic.toFixed(0)+'</b>смысл</div><div class="metric"><b>'+w.detail.toFixed(0)+'</b>детали</div><div class="metric"><b>'+w.emotional.toFixed(1)+'</b>эмоции</div><div class="metric"><b>'+w.total.toFixed(1)+'</b>итого</div></div><b>Почему:</b><div>'+w.reasons.join(' · ')+'</div><hr><b>TOP-5 из '+songs.length+' песен:</b><ol>'+r.slice(0,5).map(x=>'<li>'+x.song.title+' — '+x.total.toFixed(1)+'</li>').join('')+'</ol>'}
-for(const d of dims){const w=document.createElement('div');w.innerHTML='<label>'+labels[d]+': <span id="v-'+d+'">'+defaults[d]+'</span>/10</label><input id="'+d+'" type="range" min="0" max="10" value="'+defaults[d]+'">';sliders.appendChild(w);w.querySelector('input').oninput=e=>document.getElementById('v-'+d).textContent=e.target.value}
-run.onclick=render;
+const themeAffinity={
+ jealousy:['jealousy','possession','competition','choice','ex'], obsession:['obsession','fixation','possession','craving','desire'], danger:['danger','risk','warning','venom','knife-edge','murder'], secrets:['secrets','secret','masks','mystery','privacy','voice'], protection:['rescue','sanctuary','trust','loyalty','mutual-protection','devotion'], chaos:['chaos','wildness','mischief','madness','glitch','games','freedom'], trust:['trust','boundaries','connection','devotion','loyalty'], night:['night','darkness','moon','radio'], freedom:['freedom','escape','runaway','disappearance'], war:['war','battle','resistance','sacrifice'], magic:['magic','spells','dark-magic','wish','transformation'], choice:['choice','competition','fate']
+};
+let songs=[],profiles=[],affinity={};
+const norm=x=>String(x||'').toLowerCase();
+function themeScore(answerTheme,themes){const wanted=themeAffinity[answerTheme]||[answerTheme];let best=0;for(const t of themes){if(t===answerTheme)best=Math.max(best,20);else if(wanted.includes(norm(t)))best=Math.max(best,10)}return best}
+function typeScore(answerType,types){if(types.includes(answerType))return 50;const rel=(affinity.related&&affinity.related[answerType])||{};let best=0;for(const t of types)best=Math.max(best,rel[t]||0);return best}
+function score(song,profile,a){const semantic=typeScore(a.type,song.pairing_types||[]);const detail=themeScore(a.theme,(song.themes||[]));let raw=0,n=0;for(const d of dims){if(typeof a[d]==='number'&&typeof profile[d]==='number'){raw+=Math.max(0,10-Math.abs(a[d]-profile[d]));n++}}const emotional=n?Math.min(30,raw*30/(n*10)):0;return {song,semantic,detail,emotional,total:semantic+detail+emotional}}
+function rank(a){return songs.map(s=>{const p=profiles.find(x=>x.title===s.title);return p?score(s,p,a):null}).filter(Boolean).sort((a,b)=>b.total-a.total)}
+function getAnswers(){const a={type:document.getElementById('type').value,theme:document.getElementById('theme').value};for(const d of dims)a[d]=+document.getElementById(d).value;return a}
+function render(){const r=rank(getAnswers()),w=r[0];document.getElementById('result').innerHTML=`<div class="song">${w.song.title}</div><div>${w.song.album}</div><div class="quote">«${w.song.quote||''}»</div><div class="breakdown"><div class="metric"><b>${w.semantic.toFixed(0)}</b>смысл</div><div class="metric"><b>${w.detail.toFixed(0)}</b>детали</div><div class="metric"><b>${w.emotional.toFixed(1)}</b>эмоции</div><div class="metric"><b>${w.total.toFixed(1)}</b>итого</div></div><b>TOP-5 из ${songs.length}:</b><ol>${r.slice(0,5).map(x=>`<li>${x.song.title} — ${x.total.toFixed(1)} [${x.semantic}/${x.detail}/${x.emotional.toFixed(1)}]</li>`).join('')}</ol>`}
+for(const d of dims){const w=document.createElement('div');w.innerHTML=`<label>${labels[d]}: <span id="v-${d}">${defaults[d]}</span>/10</label><input id="${d}" type="range" min="0" max="10" value="${defaults[d]}">`;document.getElementById('sliders').appendChild(w);w.querySelector('input').oninput=e=>document.getElementById('v-'+d).textContent=e.target.value}
+document.getElementById('run').onclick=render;
 const scenarios=[
 ['Враги → любовники',{type:'enemies-to-lovers',theme:'jealousy',romance:7,passion:10,obsession:9,danger:8,tenderness:2,tragedy:5,chaos:8}],
 ['Healing',{type:'hurt-comfort',theme:'protection',romance:9,passion:5,obsession:5,danger:3,tenderness:10,tragedy:8,chaos:2}],
@@ -63,7 +39,6 @@ const scenarios=[
 ['Сообщники',{type:'partners-in-crime',theme:'chaos',romance:8,passion:7,obsession:4,danger:5,tenderness:6,tragedy:1,chaos:10}],
 ['Обречённая любовь',{type:'doomed-romance',theme:'secrets',romance:9,passion:9,obsession:9,danger:8,tenderness:3,tragedy:10,chaos:8}]
 ];
-testsBtn.onclick=()=>{tests.textContent=scenarios.map(([name,a])=>{const r=rank(a),w=r[0];return name+'\n  1. '+w.song.title+' — '+w.total.toFixed(1)+'  [смысл '+w.semantic+', деталь '+w.detail+', эмоции '+w.emotional.toFixed(1)+']\n  2. '+r[1].song.title+' — '+r[1].total.toFixed(1)+'\n  3. '+r[2].song.title+' — '+r[2].total.toFixed(1)+'\n  4. '+r[3].song.title+' — '+r[3].total.toFixed(1)+'\n  5. '+r[4].song.title+' — '+r[4].total.toFixed(1)+'\n'}).join('\n')}
-fetch('data/sugar-funeral-songs.json').then(r=>r.json()).then(data=>{songs=data.songs||[];status.textContent='База загружена: '+songs.length+' песен. Готово к тестированию.';app.hidden=false}).catch(e=>status.textContent='Не удалось загрузить базу: '+e.message);
-</script>
-</body></html>
+document.getElementById('testsBtn').onclick=()=>{document.getElementById('tests').textContent=scenarios.map(([name,a])=>{const r=rank(a);return name+'\n'+r.slice(0,5).map((x,i)=>`  ${i+1}. ${x.song.title} — ${x.total.toFixed(1)} [смысл ${x.semantic}, деталь ${x.detail}, эмоции ${x.emotional.toFixed(1)}]`).join('\n')+'\n'}).join('\n')};
+Promise.all([fetch('data/sugar-funeral-songs.json').then(r=>r.json()),fetch('data/song-profiles.json').then(r=>r.json()),fetch('data/pairing-affinity.json').then(r=>r.json())]).then(([s,p,a])=>{songs=s.songs||[];profiles=p.profiles||[];affinity=a||{};document.getElementById('status').textContent=`База загружена: ${songs.length} песен; эмоциональных профилей: ${profiles.length}.`;document.getElementById('app').hidden=false}).catch(e=>document.getElementById('status').textContent='Ошибка загрузки базы: '+e.message);
+</script></body></html>
