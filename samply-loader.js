@@ -9,8 +9,6 @@
   let ready = false;
 
   function hideTestControls(root=document){
-    // The test button may have different ids between generator revisions,
-    // so identify it by its visible label as well as the legacy id.
     const legacy = document.getElementById('random10');
     if(legacy) legacy.style.display = 'none';
 
@@ -36,9 +34,15 @@
     });
   }
 
+  function clearGeneratedResults(){
+    const results = document.getElementById('results');
+    if(results) results.innerHTML = '';
+  }
+
   function prepareCleanStart(){
     hideTestControls();
     clearForm();
+    clearGeneratedResults();
   }
 
   function normalize(s){
