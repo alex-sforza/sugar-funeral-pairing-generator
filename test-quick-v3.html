@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sugar Funeral — калибровка v3</title>
+<style>
+:root{--ink:#241d20;--muted:#6b6165;--paper:#fff;--bg:#f4f0ee;--line:#eee6e8;--pill:#eee7e9;--accent:#6d3f55}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;max-width:1280px;margin:auto;padding:24px;background:var(--bg);color:var(--ink)}
+.head,.card{background:var(--paper);padding:22px;border-radius:18px;box-shadow:0 3px 18px #0001;margin-bottom:16px}.head h1{margin:0 0 7px}.sub,.meta,.note{color:var(--muted)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}button{border:0;border-radius:10px;padding:11px 15px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.preset{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.preset span{font-weight:400;color:var(--muted);margin-top:5px;line-height:1.35}.result h3{margin:0 0 6px}.score{font-size:23px;font-weight:800}.song{padding:11px 0;border-bottom:1px solid var(--line)}.song:last-child{border:0}.rank{font-weight:700}.why{font-size:12px;color:var(--muted);margin-top:3px}.type{font-size:18px;font-weight:800}.details{margin-top:12px}.profile{display:flex;flex-wrap:wrap;margin-top:10px}.pill{display:inline-block;background:var(--pill);border-radius:99px;padding:5px 9px;margin:3px;font-size:12px}.pill b{margin-left:4px}.bar{height:7px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:var(--ink)}.warn{padding:11px 13px;background:#fff7df;border-radius:10px;margin-top:12px}.ok{font-weight:700}.empty{padding:30px;text-align:center;color:#777}.section-title{margin:0 0 8px}.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.legend div{border:1px solid var(--line);border-radius:10px;padding:9px;font-size:12px}.legend b{display:block;font-size:13px;margin-bottom:3px}.formula{margin-top:12px;padding:12px 14px;border-left:3px solid var(--accent);background:#faf7f8;border-radius:8px}.delta{font-size:12px;color:var(--muted)}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.legend{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="head">
+<h1>SUGAR FUNERAL · БЫСТРЫЙ ПРОГОН v3</h1>
+<div class="sub">Песня больше не выбирается по одному типу пейринга. Сначала строится эмоциональный портрет, затем набор динамик отношений, а песня ищется по совокупности этих признаков.</div>
+<div id="status">Загрузка базы…</div>
+<div class="controls"><button onclick="runAll()">▶ ПРОГНАТЬ ВСЕ КОНТРОЛЬНЫЕ</button><button onclick="runRandom()">✦ 10 СЛУЧАЙНЫХ ПАР</button><button onclick="clearResults()">ОЧИСТИТЬ</button></div>
+<div class="legend">
+<div><b>45%</b> Эмоции</div><div><b>35%</b> Динамики</div><div><b>20%</b> Тематические детали</div><div><b>0%</b> прямого бонуса за тип</div>
+</div>
+<div class="formula"><b>Главный принцип v3:</b> одинаковый тип пейринга может приводить к разным песням, если у пары различаются ревность, нежность, риск, одержимость, трагичность, хаос и конкретная динамика.</div>
+</div>
+
+<div class="card"><h2 class="section-title">Контрольные сценарии</h2><div class="meta">Это не «правильные ответы», а эталоны для проверки поведения алгоритма.</div><div id="presets" class="grid" style="margin-top:14px"></div></div>
+<div id="results"></div>
+
+<script>
+let songs=[],profiles=[],allResults=[];
+const dims=['romance','passion','obsession','danger','tenderness','tragedy','chaos'];
+const dynDims=['conflict','secrecy','devotion','control','healing','rebellion','playfulness','fatalism','predation','intimacy','crime','distance'];
+
+/* Динамики — это второй слой модели. Они не заменяют эмоциональные шкалы, а уточняют «КАК именно» пара любит друг друга. */
+const dynLabels={
+ conflict:'соперничество',secrecy:'тайна',devotion:'преданность',control:'борьба за власть',healing:'исцеление',rebellion:'бунт и побег',playfulness:'игра и авантюра',fatalism:'обречённость',predation:'хищник × добыча',intimacy:'близость',crime:'сообщничество',distance:'дистанция'
+};
+
+const presets=[
+ {name:'⚔️ Враги → любовники',desc:'Соперничают, провоцируют друг друга, но притяжение сильнее здравого смысла.',type:'enemies-to-lovers',p:{romance:7,passion:9,obsession:7,danger:7,tenderness:3,tragedy:5,chaos:6},d:{conflict:10,secrecy:2,devotion:4,control:9,healing:1,rebellion:5,playfulness:7,fatalism:4,predation:5,intimacy:7,crime:2,distance:2}},
+ {name:'🤍 Healing / hurt × comfort',desc:'Они становятся друг другу безопасным местом и учатся жить с чужими ранами.',type:'hurt-comfort',p:{romance:8,passion:5,obsession:3,danger:2,tenderness:10,tragedy:5,chaos:2},d:{conflict:2,secrecy:2,devotion:10,control:1,healing:10,rebellion:1,playfulness:2,fatalism:3,predation:1,intimacy:9,crime:1,distance:5}},
+ {name:'🖤 Токсичная одержимость',desc:'Притяжение, зависимость, ревность и невозможность остановиться.',type:'toxic-attraction',p:{romance:7,passion:10,obsession:10,danger:9,tenderness:2,tragedy:7,chaos:7},d:{conflict:7,secrecy:3,devotion:7,control:8,healing:2,rebellion:5,playfulness:4,fatalism:7,predation:7,intimacy:8,crime:2,distance:2}},
+ {name:'🔥 Сообщники',desc:'Авантюра, риск, преступления, свобода и ощущение «мы против всех».',type:'partners-in-crime',p:{romance:7,passion:8,obsession:5,danger:7,tenderness:3,tragedy:3,chaos:10},d:{conflict:3,secrecy:6,devotion:7,control:4,healing:1,rebellion:10,playfulness:9,fatalism:2,predation:2,intimacy:7,crime:10,distance:1}},
+ {name:'🥀 Обречённая любовь',desc:'Они понимают, что счастливого финала может не быть, но всё равно выбирают друг друга.',type:'doomed-romance',p:{romance:10,passion:8,obsession:8,danger:6,tenderness:5,tragedy:10,chaos:4},d:{conflict:4,secrecy:5,devotion:9,control:2,healing:3,rebellion:3,playfulness:1,fatalism:10,predation:2,intimacy:9,crime:1,distance:8}},
+ {name:'🔒 Запретная связь',desc:'Правила, статус, тайна или обстоятельства делают отношения невозможными.',type:'forbidden-attraction',p:{romance:8,passion:9,obsession:7,danger:7,tenderness:4,tragedy:7,chaos:3},d:{conflict:5,secrecy:10,devotion:7,control:5,healing:1,rebellion:8,playfulness:2,fatalism:7,predation:3,intimacy:8,crime:2,distance:7}},
+ {name:'🌙 Slow burn',desc:'Долго, осторожно, через дружбу, взгляды, доверие и медленно нарастающее напряжение.',type:'slow-burn',p:{romance:8,passion:6,obsession:4,danger:1,tenderness:8,tragedy:2,chaos:2},d:{conflict:2,secrecy:4,devotion:7,control:2,healing:6,rebellion:1,playfulness:3,fatalism:1,predation:1,intimacy:10,crime:1,distance:4}},
+ {name:'🩸 Монстр × принимающий',desc:'Опасность и инаковость сталкиваются с человеком, который всё равно остаётся рядом.',type:'monster-romance',p:{romance:8,passion:7,obsession:7,danger:10,tenderness:7,tragedy:8,chaos:5},d:{conflict:4,secrecy:5,devotion:9,control:3,healing:7,rebellion:2,playfulness:2,fatalism:6,predation:10,intimacy:8,crime:1,distance:4}},
+ {name:'♟️ Власть × власть',desc:'Никто не уступает. Флирт превращается в игру нервов и борьбу за контроль.',type:'power-dynamic',p:{romance:6,passion:9,obsession:7,danger:8,tenderness:1,tragedy:4,chaos:6},d:{conflict:9,secrecy:2,devotion:3,control:10,healing:1,rebellion:5,playfulness:8,fatalism:2,predation:5,intimacy:7,crime:2,distance:2}},
+ {name:'🌫️ Тайные отношения',desc:'Все вокруг не должны знать, а они учатся жить с двойной жизнью.',type:'secret-romance',p:{romance:8,passion:8,obsession:6,danger:5,tenderness:5,tragedy:6,chaos:3},d:{conflict:2,secrecy:10,devotion:8,control:5,healing:3,rebellion:5,playfulness:3,fatalism:5,predation:2,intimacy:9,crime:1,distance:7}},
+ {name:'🎲 Хаотичная пара',desc:'Они могут не иметь общего плана, зато точно знают, что вместе будет весело.',type:'chaotic-romance',p:{romance:7,passion:8,obsession:5,danger:7,tenderness:4,tragedy:2,chaos:10},d:{conflict:4,secrecy:3,devotion:6,control:2,healing:1,rebellion:9,playfulness:10,fatalism:1,predation:3,intimacy:7,crime:6,distance:1}},
+ {name:'🛡️ Защитник × тот, кого нельзя потерять',desc:'Любовь проявляется через поступки, риск, верность и готовность встать между человеком и опасностью.',type:'protective-romance',p:{romance:8,passion:6,obsession:5,danger:5,tenderness:8,tragedy:5,chaos:2},d:{conflict:3,secrecy:2,devotion:10,control:4,healing:8,rebellion:1,playfulness:1,fatalism:4,predation:4,intimacy:8,crime:2,distance:2}}
+];
+
+/* Теги базы превращаем в динамики. Важное отличие v3: совпадение с тегом не даёт фиксированных 35 баллов; оно лишь формирует профиль песни. */
+const dynMap={
+'conflict':['enemies-to-lovers','rivals-to-lovers','power-struggle','provocation','competition','mind-games','choice','challenge','spite','battle-couple'],
+'secrecy':['secret-romance','secret-connection','secret-date','forbidden-love','forbidden-attraction','secret-identities','mystery-romance','privacy','secrets','masks','distance'],
+'devotion':['devoted-love','eternal-love','devotion','exclusive-bond','protective-romance','battle-couple','loyalty','sacrifice','acceptance','creation-and-devotion','devoted-love'],
+'control':['power-dynamic','power-struggle','obsession','possessive-romance','possessive-love','control','surrender','challenge','authority','discipline'],
+'healing':['hurt-comfort','healing-romance','mutual-healing','sanctuary','repair','pattern-breaking','comfort','trust','acceptance','creation-and-devotion'],
+'rebellion':['rule-breakers','runaways','wild-romance','escape','rebellion','freedom','chaotic-romance','playful-romance','disappearance'],
+'playfulness':['playful-romance','chaotic-romance','dark-comedy','comedic-kink','flirty-romance','teasing','mischief','games','playful-danger','wonderland'],
+'fatalism':['doomed-romance','temporary-love','tragic-romance','heartbreak','bittersweet','finality','inevitability','separation','temporary','damage'],
+'predation':['monster-romance','predator-and-devotee','predatory-romance','hunt-and-hunted','dangerous-attraction','fatal-attraction','killer-romance','predator','hunt','hunger','venom'],
+'intimacy':['sensual-romance','intimacy','slow-burn','friends-to-lovers','guarded-heart','connection','long-distance-romance','devotion','kiss','glances','anticipation','revelation'],
+'crime':['partners-in-crime','runaways','crime','killer-romance','murder','podcast','criminal','wild-romance'],
+'distance':['long-distance-romance','separation','distance','loneliness','secret-connection','radio','night','escape']
+};
+
+const themeToDyn={
+'devotion':['devotion','intimacy'],'mark':['devotion','obsession'],'healing':['healing'],'eternity':['devotion','fatalism'],'temptation':['predation','playfulness'],'rebellion':['rebellion'],'danger':['predation','conflict'],'seduction':['intimacy','predation'],'possession':['control','obsession'],'ex':['conflict','obsession'],'chaos':['rebellion','playfulness'],'desire':['intimacy','predation'],'restraint':['control','intimacy'],'trust':['devotion','healing','intimacy'],'hunger':['predation','obsession'],'elegance':['intimacy'],'predator':['predation'],'loyalty':['devotion'],'lust':['intimacy','predation'],'independence':['rebellion'],'memory':['distance','fatalism'],'separation':['distance','fatalism'],'jealousy':['obsession','conflict'],'longing':['distance','fatalism'],'repetition':['fatalism','obsession'],'rush':['playfulness','predation'],'heartbreak':['fatalism','distance'],'temporary':['fatalism'],'loneliness':['distance','healing'],'rescue':['healing','devotion'],'sanctuary':['healing','devotion'],'freedom':['rebellion'],'crime':['crime'],'escape':['rebellion','distance'],'boundaries':['control','healing'],'vulnerability':['intimacy','healing'],'patience':['intimacy','healing'],'authority':['control'],'office':['control'],'discipline':['control'],'comedy':['playfulness'],'fluff':['playfulness','healing'],'affection':['devotion','playfulness'],'games':['playfulness','conflict'],'possessiveness':['control','obsession'],'addiction':['obsession','predation'],'chemistry':['intimacy','passion'],'craving':['obsession','predation'],'venom':['predation','conflict'],'spite':['conflict'],'passion':['passion'],'damage':['fatalism','healing'],'knife-edge':['predation','danger'],'risk':['predation','rebellion'],'teeth':['predation'],'mutuality':['devotion','intimacy'],'layers':['intimacy'],'anticipation':['intimacy'],'revelation':['intimacy','secrecy'],'warning':['danger','secrecy'],'moon':['secrecy','predation'],'hunt':['predation'],'transformation':['predation'],'therapy':['healing'],'connection':['intimacy','devotion'],'masks':['secrecy'],'secrets':['secrecy'],'truth':['intimacy','secrecy'],'mystery':['secrecy'],'magic':['secrecy','playfulness'],'fascination':['obsession','intimacy'],'night':['secrecy','intimacy'],'mischief':['playfulness','rebellion'],'snacks':['playfulness'],'kiss':['intimacy','passion'],'sweetness':['intimacy'],'lust':['passion','predation'],'glitch':['chaos','fatalism'],'virus':['obsession','fatalism'],'inevitability':['fatalism'],'vertigo':['passion','loss-of-control'],'loss-of-control':['control','passion'],'wickedness':['predation'],'comfort':['healing'],'crown':['control','devotion'],'war':['conflict','rebellion'],'sacrifice':['devotion','fatalism'],'strategy':['conflict','control'],'competition':['conflict','playfulness'],'teasing':['playfulness','conflict'],'victory':['control','conflict'],'luck':['playfulness','risk'],'chance':['rebellion','fatalism'],'shot':['danger','fatalism'],'finality':['fatalism'],'murder':['crime','predation'],'radio':['distance'],'voice':['distance','intimacy'],'darkness':['secrecy','predation'],'dance':['playfulness','intimacy'],'surrender':['control','intimacy'],'wish':['fatalism','obsession'],'consequence':['fatalism'],'fever':['obsession','passion'],'romance':['intimacy','devotion'],'warning':['danger','secrecy']
+};
+
+function clamp(x){return Math.max(0,Math.min(10,x))}
+function safeNum(x){return Number.isFinite(+x)?+x:0}
+function normalizeVector(v,keys){const out={};keys.forEach(k=>out[k]=clamp(safeNum(v?.[k])));return out}
+function distanceScore(a,b,keys){let sum=0,max=keys.length*100;for(const k of keys){const d=safeNum(a[k])-safeNum(b[k]);sum+=d*d}return clamp(100-Math.sqrt(sum/max)*100)}
+
+function songDynamics(song){
+ const v=Object.fromEntries(dynDims.map(d=>[d,0]));
+ const tags=[...(song.pairing_types||[]),...(song.themes||[])];
+ for(const tag of tags){
+   for(const d of dynDims){
+     if((dynMap[d]||[]).includes(tag))v[d]+=1.8;
+   }
+   for(const d of (themeToDyn[tag]||[])){v[d]+=1.2}
+ }
+ // Некоторые эмоции из паспорта помогают уточнить динамику, но не доминируют над тегами.
+ const sp=profiles.find(x=>x.title===song.title)||{};
+ v.devotion += (sp.tenderness||0)*0.18;
+ v.intimacy += (sp.romance||0)*0.12 + (sp.passion||0)*0.12;
+ v.predation += (sp.danger||0)*0.10;
+ v.fatalism += (sp.tragedy||0)*0.10;
+ v.playfulness += (sp.chaos||0)*0.08;
+ v.control += (sp.obsession||0)*0.08;
+ const max=Math.max(1,...Object.values(v));
+ for(const d of dynDims)v[d]=clamp(v[d]/max*10);
+ return v;
+}
+
+function emotionScore(p,sp){return distanceScore(p,sp,dims)*0.45}
+function dynamicScore(p,song){return distanceScore(p,song._dyn,dynDims)*0.35}
+function detailScore(p,song){
+ let sum=0,count=0;
+ const sp=profiles.find(x=>x.title===song.title)||{};
+ for(const tag of (song.themes||[])){
+   const mapped=themeToDyn[tag]||[];
+   for(const d of mapped){
+     // Связываем тему с наиболее близкой эмоциональной осью.
+     const emDim=d==='devotion'||d==='healing'||d==='intimacy'?'tenderness':d==='predation'?'danger':d==='control'||d==='obsession'?'obsession':d==='fatalism'?'tragedy':d==='playfulness'||d==='rebellion'||d==='crime'?'chaos':'romance';
+     sum+=Math.max(0,10-Math.abs((p[emDim]||0)-(sp[emDim]??5)));count++;
+   }
+ }
+ return count?Math.min(20,(sum/count)*2):0;
+}
+
+function scoreSong(song,p,d){
+ const sp=profiles.find(x=>x.title===song.title)||{};
+ const emotion=emotionScore(p,sp);
+ const dynamic=dynamicScore(d,song);
+ const detail=detailScore(p,song);
+ return {title:song.title,total:emotion+dynamic+detail,emotion,dynamic,detail,dyn:song._dyn};
+}
+
+function inferDynamics(d){
+ const sorted=dynDims.map(k=>[k,d[k]||0]).sort((a,b)=>b[1]-a[1]);
+ return sorted.slice(0,3).map(x=>dynLabels[x[0]]).join(' × ');
+}
+
+function inferType(d,p){
+ // Тип теперь только описательный результат, а не источник бонуса к песне.
+ const typeScores=presets.map(x=>({x,score:0}));
+ for(const z of typeScores){z.score=distanceScore(p,z.x.p,dims)*0.55+distanceScore(d,z.x.d,dynDims)*0.45}
+ typeScores.sort((a,b)=>b.score-a.score);
+ return {name:typeScores[0].x.name,confidence:typeScores[0].score,second:typeScores[1]};
+}
+
+function randomProfile(){const p={};for(const k of dims)p[k]=+(Math.random()*10).toFixed(1);return p}
+function randomDynamics(){const d={};for(const k of dynDims)d[k]=+(Math.random()*10).toFixed(1);return d}
+function noisy(base,amount=2){const p={};for(const k of Object.keys(base))p[k]=+clamp(base[k]+(Math.random()*2-1)*amount).toFixed(1);return p}
+
+function renderProfile(p){return '<div class="profile">'+dims.map(d=>`<span class="pill">${d}: <b>${p[d].toFixed(1)}/10</b></span>`).join('')+'</div>'}
+function renderDynamics(d){const top=dynDims.map(k=>[k,d[k]]).sort((a,b)=>b[1]-a[1]).slice(0,6);return '<div class="profile">'+top.map(([k,v])=>`<span class="pill">${dynLabels[k]}: <b>${v.toFixed(1)}/10</b></span>`).join('')+'</div>'}
+
+function renderOne(label,desc,p,d,control=false){
+ const inf=inferType(d,p);
+ const ranked=songs.map(s=>scoreSong(s,p,d)).sort((a,b)=>b.total-a.total).slice(0,5);
+ const top=ranked[0];
+ return `<div class="card result"><h3>${label}</h3><div class="meta">${desc}</div><p class="ok">Главная динамика → <span class="type">${inferDynamics(d)}</span><br>Тип → <span class="type">${inf.name}</span> · уверенность ${inf.confidence.toFixed(0)}%</p><div class="song"><div class="meta">ЛУЧШЕЕ СОВПАДЕНИЕ</div><b>№1 · ${top.title}</b> <span class="score">${top.total.toFixed(1)}</span><div class="why">эмоции ${top.emotion.toFixed(1)} · динамика ${top.dynamic.toFixed(1)} · детали ${top.detail.toFixed(1)}</div></div><details class="details" open><summary>Показать TOP-5, профиль и динамики</summary><div>${ranked.map((x,i)=>`<div class="song"><span class="rank">${i+1}. ${x.title} — ${x.total.toFixed(1)}</span><div class="why">эмоции ${x.emotion.toFixed(1)} · динамика ${x.dynamic.toFixed(1)} · детали ${x.detail.toFixed(1)}</div></div>`).join('')}</div><b>Эмоциональный профиль</b>${renderProfile(p)}<b style="display:block;margin-top:10px">Динамика пары</b>${renderDynamics(d)}<div class="note" style="margin-top:10px">В v3 нет фиксированного бонуса «это песня такого-то типа». Тип помогает назвать результат, но песня выбирается по совокупности эмоций, динамик и тем.</div></details></div>`
+}
+
+function runAll(){allResults=presets.map(x=>({n:x.name,dsc:x.desc,p:x.p,d:x.d}));renderResults()}
+function runRandom(){allResults=Array.from({length:10},(_,i)=>({n:`🎲 Случайная пара ${i+1}`,dsc:'Случайно сгенерированные эмоции + динамика отношений',p:randomProfile(),d:randomDynamics()}));renderResults()}
+function renderResults(){document.getElementById('results').innerHTML=allResults.length?allResults.map(x=>renderOne(x.n,x.dsc,x.p,x.d)).join(''):'<div class="card empty">Запусти один из тестов выше.</div>'}
+function clearResults(){allResults=[];renderResults()}
+
+async function load(){
+ try{
+  const [a,b]=await Promise.all([fetch('data/sugar-funeral-songs.json').then(r=>r.json()),fetch('data/song-profiles.json').then(r=>r.json())]);
+  songs=a.songs;profiles=b.profiles;
+  songs.forEach(s=>s._dyn=songDynamics(s));
+  document.getElementById('status').innerHTML=`Загружено: <b>${songs.length} песен</b> · эмоциональных паспортов: <b>${profiles.length}</b> · модель <b>v3</b> готова.`;
+  document.getElementById('presets').innerHTML=presets.map((x,i)=>`<button class="preset" onclick="allResults=[{n:presets[${i}].name,dsc:presets[${i}].desc,p:presets[${i}].p,d:presets[${i}].d}];renderResults()"><b>${x.name}</b><span>${x.desc}</span></button>`).join('');
+ }catch(e){document.getElementById('status').innerHTML='Не удалось загрузить базу данных: '+e.message}
+}
+load();
+</script>
+</body>
+</html>
