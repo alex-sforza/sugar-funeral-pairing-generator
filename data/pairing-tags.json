@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical tag vocabulary used by the questionnaire and 69-song catalogue.",
+  "groups": {
+    "relationship": ["friends-to-lovers","enemies-to-lovers","rivals-to-lovers","forbidden-love","forbidden-attraction","slow-burn","instant-attraction","toxic-romance","toxic-attraction","doomed-romance","bittersweet","eternal-love","healing-romance","hurt-comfort","monster-romance","mystery-romance","secret-identities","partners-in-crime","runaways","power-dynamic","power-struggle","obsessive-romance","possessive-love","long-distance-romance","secret-connection","love-triangle","killer-romance","spy-romance","battle-couple","resistance-romance","royal-romance","wish-romance","sensual-romance","cozy-romance","chaotic-romance","gothic-romance","dark-romance"],
+    "emotional": ["devotion","trust","longing","jealousy","obsession","mutual-obsession","need","fear","acceptance","healing","damage","memory","separation","desire","lust","passion","tension","intimacy","surrender","teasing","provocation"],
+    "plot": ["fate","chance","mission","secrets","mystery","rescue","competition","risk","danger","rebellion","escape","freedom","crime","war","sacrifice","transformation","magic","hunt","distance","boundaries","revelation","identity","repair","creation","consequence"],
+    "tone": ["playful-romance","playful-danger","playful-darkness","dark-tenderness","dark-comedy","fatal-attraction","dangerous-romance","dangerous-attraction","red-flags","destructive-love","mutual-destruction","softness-and-danger","symbolic-romance","power-couple"]
+  }
+}
