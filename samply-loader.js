@@ -55,8 +55,30 @@
            tracks.find(t => key && (normalize(t.title).includes(key) || key.includes(normalize(t.title))));
   }
 
+  function patchResultNames(root=document){
+    const results = root.querySelector('#results');
+    if(!results) return;
+
+    const name1 = String(document.getElementById('name1')?.value || '').trim();
+    const name2 = String(document.getElementById('name2')?.value || '').trim();
+    if(!name1 && !name2) return;
+
+    const walker = document.createTreeWalker(results, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let node;
+    while((node = walker.nextNode())) nodes.push(node);
+
+    nodes.forEach(textNode => {
+      let text = textNode.nodeValue;
+      if(name1) text = text.replace(/Первое впечатление\s*№1/g, `Первое впечатление ${name1}`);
+      if(name2) text = text.replace(/Первое впечатление\s*№2/g, `Первое впечатление ${name2}`);
+      if(text !== textNode.nodeValue) textNode.nodeValue = text;
+    });
+  }
+
   function upgrade(root=document){
     hideTestControls(root);
+    patchResultNames(root);
     if(!ready) return;
     const candidates = [...root.querySelectorAll('.songbox, .result, .aesthetic')];
     candidates.forEach(box => {
@@ -92,9 +114,6 @@
     const box = document.getElementById('htmlCode');
     if(!box || !ready || !box.value) return;
 
-    // The main generator builds the forum HTML before the external Samply map is loaded,
-    // so its local player variable may fall back to the "not connected" notice.
-    // Replace that notice with the verified embed URL from our local track database.
     const titleMatch = box.value.match(/ИХ ПЕСНЯ<\/div><h3[^>]*>([\s\S]*?)<\/h3>/i);
     if(!titleMatch) return;
 
@@ -129,7 +148,6 @@
     })
     .catch(err => console.warn('[Sugar Funeral] Samply database unavailable:', err));
 
-  // Patch the copied forum HTML after the generator opens its code modal.
   document.addEventListener('click', event => {
     const btn = event.target.closest && event.target.closest('#exportHtml');
     if(btn){
