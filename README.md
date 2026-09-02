@@ -1,0 +1,1 @@
+# sugar-funeral-pairing-generator
