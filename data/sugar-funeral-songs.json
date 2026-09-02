@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "source": "Песни Sugar Funeral.docx — user-provided lyrics",
+  "purpose": "Machine-readable pairing-matching catalogue. Lyrics themselves are not stored here; each entry contains derived analysis and a short source quote.",
+  "schema": "data/pairing-schema.json",
+  "songs": []
+}
