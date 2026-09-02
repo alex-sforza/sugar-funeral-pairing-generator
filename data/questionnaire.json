@@ -1,0 +1,443 @@
+{
+  "version": "1.0.0",
+  "title": "Анкета пары — Sugar Funeral",
+  "description": "40 сценарных вопросов для двоих. Ответы незаметно формируют эмоциональный профиль, сюжетные маркеры и набор родственных динамик.",
+  "dimensions": [
+    "romance", "passion", "obsession", "danger", "tenderness", "tragedy", "chaos",
+    "jealousy", "forbiddenness", "dependence", "guilt", "trust", "protection", "competition", "power"
+  ],
+  "answer_modes": ["pair", "character_a", "character_b"],
+  "questions": [
+    {
+      "id": "q01", "block": "Первое впечатление", "mode": "pair",
+      "question": "Что они подумали друг о друге при первой встрече?",
+      "options": [
+        {"id":"a","text":"С ним лучше не связываться.","effects":{"danger":2,"power":1},"tags":["dangerous-attraction"]},
+        {"id":"b","text":"Почему я вообще не могу перестать на него смотреть?","effects":{"passion":3,"romance":2},"tags":["instant-attraction"]},
+        {"id":"c","text":"Наконец-то появился достойный соперник.","effects":{"competition":3,"passion":1},"tags":["rivals-to-lovers","power-struggle"]},
+        {"id":"d","text":"Кажется, этому человеку нужна помощь.","effects":{"tenderness":2,"protection":3},"tags":["protective-romance","hurt-comfort"]},
+        {"id":"e","text":"Он явно станет моей проблемой.","effects":{"chaos":2,"obsession":2,"danger":1},"tags":["chaotic-romance","dangerous-attraction"]}
+      ]
+    },
+    {
+      "id": "q02", "block": "Первое впечатление", "mode": "pair",
+      "question": "Что сильнее всего удерживает их внимание друг на друге?",
+      "options": [
+        {"id":"a","text":"Внешность и физическое притяжение.","effects":{"passion":3,"romance":1},"tags":["sensual-romance"]},
+        {"id":"b","text":"Опасность: рядом с ним всё становится острее.","effects":{"danger":3,"passion":2},"tags":["dangerous-attraction"]},
+        {"id":"c","text":"Ощущение, что они слишком похожи.","effects":{"obsession":2,"romance":2},"tags":["mutual-obsession"]},
+        {"id":"d","text":"Желание разгадать его.","effects":{"obsession":2,"secrets":1},"tags":["mystery-romance"]},
+        {"id":"e","text":"То, как легко рядом с ним становится собой.","effects":{"trust":3,"tenderness":2},"tags":["friends-to-lovers","healing-romance"]}
+      ]
+    },
+    {
+      "id": "q03", "block": "Первые чувства", "mode": "pair",
+      "question": "Кто первым понимает, что между ними что-то происходит?",
+      "options": [
+        {"id":"a","text":"Оба одновременно.","effects":{"romance":2,"passion":2,"trust":1},"tags":["mutual-desire"]},
+        {"id":"b","text":"Тот, кто сильнее ревнует.","effects":{"jealousy":3,"obsession":2},"tags":["jealousy","possessive-romance"]},
+        {"id":"c","text":"Тот, кто первым начинает искать встречи.","effects":{"romance":2,"dependence":2,"obsession":1},"tags":["slow-burn"]},
+        {"id":"d","text":"Тот, кто понимает это только при угрозе потери.","effects":{"tragedy":2,"romance":3,"dependence":2},"tags":["doomed-romance"]},
+        {"id":"e","text":"Никто — они до последнего называют это чем угодно, только не любовью.","effects":{"guilt":1,"passion":2,"forbiddenness":2},"tags":["forbidden-attraction"]}
+      ]
+    },
+    {
+      "id": "q04", "block": "Первые чувства", "mode": "pair",
+      "question": "Как выглядит их первый настоящий флирт?",
+      "options": [
+        {"id":"a","text":"Тихий разговор, который неожиданно затягивается до утра.","effects":{"romance":2,"tenderness":2},"tags":["slow-burn"]},
+        {"id":"b","text":"Они спорят, но оба улыбаются.","effects":{"passion":2,"competition":2,"chaos":1},"tags":["rivals-to-lovers","flirty-romance"]},
+        {"id":"c","text":"Один специально нарушает личное пространство другого.","effects":{"passion":3,"danger":1,"power":1},"tags":["sensual-romance"]},
+        {"id":"d","text":"Они делают вид, что ничего не произошло.","effects":{"forbiddenness":3,"guilt":1,"passion":1},"tags":["secret-romance"]},
+        {"id":"e","text":"Это происходит в самый неподходящий момент.","effects":{"chaos":3,"passion":2},"tags":["chaotic-romance"]}
+      ]
+    },
+    {
+      "id": "q05", "block": "Первые чувства", "mode": "pair",
+      "question": "Что страшнее всего в момент, когда они понимают, что влюбились?",
+      "options": [
+        {"id":"a","text":"Что другой не ответит взаимностью.","effects":{"tragedy":2,"romance":2},"tags":["unrequited-love"]},
+        {"id":"b","text":"Что теперь можно потерять слишком многое.","effects":{"tragedy":3,"dependence":2},"tags":["doomed-romance"]},
+        {"id":"c","text":"Что правила, статус или обстоятельства запрещают им быть вместе.","effects":{"forbiddenness":4,"guilt":1},"tags":["forbidden-love"]},
+        {"id":"d","text":"Что они слишком сильно хотят друг друга.","effects":{"passion":3,"obsession":2,"danger":1},"tags":["mutual-obsession"]},
+        {"id":"e","text":"Что рядом с ним они становятся уязвимыми.","effects":{"trust":2,"tenderness":2,"danger":1},"tags":["healing-romance"]}
+      ]
+    },
+    {
+      "id": "q06", "block": "Притяжение", "mode": "pair",
+      "question": "Когда они остаются вдвоём, напряжение обычно…",
+      "options": [
+        {"id":"a","text":"исчезает — рядом наконец спокойно.","effects":{"tenderness":3,"trust":3},"tags":["healing-romance"]},
+        {"id":"b","text":"становится почти физическим.","effects":{"passion":4,"romance":1},"tags":["sensual-romance"]},
+        {"id":"c","text":"превращается в очередной спор.","effects":{"competition":2,"passion":2,"chaos":1},"tags":["rivals-to-lovers"]},
+        {"id":"d","text":"становится опасным, потому что оба знают, что сорвутся.","effects":{"passion":3,"danger":3,"obsession":2},"tags":["dangerous-romance"]},
+        {"id":"e","text":"становится слишком тихим: оба боятся сказать лишнее.","effects":{"forbiddenness":2,"guilt":2,"romance":2},"tags":["secret-romance"]}
+      ]
+    },
+    {
+      "id": "q07", "block": "Притяжение", "mode": "pair",
+      "question": "Что они чаще всего используют как повод побыть рядом?",
+      "options": [
+        {"id":"a","text":"Работу, учёбу или общее дело.","effects":{"trust":2,"romance":1},"tags":["slow-burn"]},
+        {"id":"b","text":"Споры и соревнования.","effects":{"competition":3,"passion":2},"tags":["rivals-to-lovers"]},
+        {"id":"c","text":"Приключения и сомнительные затеи.","effects":{"chaos":4,"danger":1},"tags":["partners-in-crime"]},
+        {"id":"d","text":"Помощь друг другу после тяжёлого дня.","effects":{"tenderness":3,"protection":2},"tags":["hurt-comfort"]},
+        {"id":"e","text":"Ничего не придумывают — просто не могут разойтись.","effects":{"obsession":3,"dependence":2},"tags":["mutual-obsession"]}
+      ]
+    },
+    {
+      "id": "q08", "block": "Притяжение", "mode": "pair",
+      "question": "Если один из них случайно касается другого, реакция второго скорее…",
+      "options": [
+        {"id":"a","text":"мягкая улыбка.","effects":{"tenderness":3,"romance":2},"tags":["devoted-love"]},
+        {"id":"b","text":"мгновенная искра.","effects":{"passion":4},"tags":["instant-attraction"]},
+        {"id":"c","text":"попытка скрыть слишком заметную реакцию.","effects":{"forbiddenness":2,"passion":2},"tags":["secret-romance"]},
+        {"id":"d","text":"ответное прикосновение, чуть более смелое.","effects":{"passion":3,"obsession":1,"power":1},"tags":["sensual-romance"]},
+        {"id":"e","text":"резкая реакция: слишком много чувств сразу.","effects":{"obsession":3,"danger":1,"chaos":1},"tags":["mutual-obsession"]}
+      ]
+    },
+    {
+      "id": "q09", "block": "Ссоры", "mode": "pair",
+      "question": "Их типичная ссора начинается из-за…",
+      "options": [
+        {"id":"a","text":"нежелания говорить о чувствах.","effects":{"guilt":2,"forbiddenness":1,"tragedy":1},"tags":["guarded-heart"]},
+        {"id":"b","text":"ревности.","effects":{"jealousy":4,"obsession":2},"tags":["jealousy"]},
+        {"id":"c","text":"борьбы за контроль.","effects":{"power":4,"competition":2},"tags":["power-struggle"]},
+        {"id":"d","text":"того, что один снова рискует собой.","effects":{"protection":3,"danger":2,"tenderness":1},"tags":["protective-romance"]},
+        {"id":"e","text":"какой-нибудь совершенно нелепой мелочи.","effects":{"chaos":4,"romance":1},"tags":["chaotic-romance"]}
+      ]
+    },
+    {
+      "id": "q10", "block": "Ссоры", "mode": "pair",
+      "question": "Чем обычно заканчивается их конфликт?",
+      "options": [
+        {"id":"a","text":"Долгим молчанием.","effects":{"tragedy":2,"guilt":2},"tags":["doomed-romance"]},
+        {"id":"b","text":"Смехом и примирением.","effects":{"romance":2,"tenderness":2,"chaos":1},"tags":["playful-romance"]},
+        {"id":"c","text":"Ещё большей близостью.","effects":{"passion":3,"obsession":2},"tags":["toxic-attraction"]},
+        {"id":"d","text":"Попыткой выяснить, кто всё-таки прав.","effects":{"competition":3,"power":2},"tags":["rivals-to-lovers"]},
+        {"id":"e","text":"Признанием того, что оба слишком сильно боятся потерять другого.","effects":{"tenderness":2,"dependence":3,"romance":2},"tags":["mutual-healing"]}
+      ]
+    },
+    {
+      "id": "q11", "block": "Ревность", "mode": "pair",
+      "question": "Когда один видит другого с потенциальным соперником, он…",
+      "options": [
+        {"id":"a","text":"искренне радуется за него.","effects":{"trust":4},"tags":["devoted-love"]},
+        {"id":"b","text":"становится холоднее.","effects":{"jealousy":2,"guilt":1},"tags":["jealousy"]},
+        {"id":"c","text":"начинает язвить и провоцировать.","effects":{"jealousy":3,"competition":2,"passion":1},"tags":["provocation"]},
+        {"id":"d","text":"молчит, но потом требует объяснений.","effects":{"jealousy":4,"power":2,"obsession":1},"tags":["possessive-love"]},
+        {"id":"e","text":"делает что-нибудь совершенно безрассудное.","effects":{"jealousy":3,"chaos":3,"danger":1},"tags":["chaotic-romance"]}
+      ]
+    },
+    {
+      "id": "q12", "block": "Ревность", "mode": "pair",
+      "question": "Кто чаще скрывает ревность?",
+      "options": [
+        {"id":"a","text":"Оба.","effects":{"jealousy":2,"guilt":1,"obsession":1},"tags":["possessive-romance"]},
+        {"id":"b","text":"Первый персонаж.","effects":{"jealousy":2,"power":1},"tags":["jealousy"]},
+        {"id":"c","text":"Второй персонаж.","effects":{"jealousy":2,"power":1},"tags":["jealousy"]},
+        {"id":"d","text":"Никто: они сразу говорят об этом.","effects":{"trust":3,"jealousy":1},"tags":["devoted-love"]}
+      ]
+    },
+    {
+      "id": "q13", "block": "Ревность", "mode": "pair",
+      "question": "Что страшнее для ревнивого из них?",
+      "options": [
+        {"id":"a","text":"Что другой найдёт кого-то лучше.","effects":{"jealousy":3,"tragedy":2},"tags":["love-triangle"]},
+        {"id":"b","text":"Что другой перестанет нуждаться в нём.","effects":{"jealousy":2,"dependence":3},"tags":["possessive-love"]},
+        {"id":"c","text":"Что другой уйдёт, ничего не объяснив.","effects":{"jealousy":2,"tragedy":3,"secrets":1},"tags":["doomed-romance"]},
+        {"id":"d","text":"Что он сам разрушит всё своей ревностью.","effects":{"jealousy":3,"guilt":3,"danger":1},"tags":["toxic-romance"]}
+      ]
+    },
+    {
+      "id": "q14", "block": "Защита", "mode": "pair",
+      "question": "Если одному из них угрожает опасность, второй…",
+      "options": [
+        {"id":"a","text":"мгновенно бросается защищать.","effects":{"protection":4,"danger":1,"tenderness":2},"tags":["protective-romance"]},
+        {"id":"b","text":"сначала оценивает риск, но всё равно идёт.","effects":{"protection":3,"trust":1,"danger":2},"tags":["devotion"]},
+        {"id":"c","text":"теряет контроль и становится опаснее самой угрозы.","effects":{"protection":3,"danger":4,"obsession":2},"tags":["dangerous-romance"]},
+        {"id":"d","text":"злится на него за то, что тот вообще оказался в опасности.","effects":{"protection":3,"jealousy":1,"power":1},"tags":["protective-romance"]},
+        {"id":"e","text":"позволяет ему самому справиться, потому что доверяет.","effects":{"trust":4,"protection":1},"tags":["devoted-love"]}
+      ]
+    },
+    {
+      "id": "q15", "block": "Защита", "mode": "pair",
+      "question": "Как выглядит забота между ними?",
+      "options": [
+        {"id":"a","text":"Тихо: чай, плед, сообщение «ты дома?». ","effects":{"tenderness":4,"trust":2},"tags":["healing-romance"]},
+        {"id":"b","text":"Практично: решить проблему за другого.","effects":{"protection":3,"power":1},"tags":["protective-romance"]},
+        {"id":"c","text":"Навязчиво: убедиться, что с ним всё хорошо любой ценой.","effects":{"obsession":3,"dependence":2,"protection":2},"tags":["possessive-love"]},
+        {"id":"d","text":"Через риск: «если ты идёшь, я иду с тобой». ","effects":{"protection":3,"danger":2,"romance":2},"tags":["battle-couple"]},
+        {"id":"e","text":"Они не умеют заботиться нормально, поэтому постоянно спасают друг друга из неприятностей.","effects":{"chaos":3,"protection":2,"tenderness":1},"tags":["partners-in-crime"]}
+      ]
+    },
+    {
+      "id": "q16", "block": "Защита", "mode": "pair",
+      "question": "Если один ранен, второй скорее…",
+      "options": [
+        {"id":"a","text":"становится нежнее обычного.","effects":{"tenderness":4,"romance":2},"tags":["hurt-comfort"]},
+        {"id":"b","text":"начинает искать виноватого.","effects":{"danger":2,"power":2,"protection":3},"tags":["dangerous-romance"]},
+        {"id":"c","text":"винит себя.","effects":{"guilt":4,"tragedy":2,"tenderness":1},"tags":["doomed-romance"]},
+        {"id":"d","text":"паникует, хотя обычно этого не показывает.","effects":{"dependence":3,"obsession":2,"tragedy":1},"tags":["mutual-obsession"]},
+        {"id":"e","text":"шутит, чтобы тот не испугался.","effects":{"chaos":2,"tenderness":3},"tags":["playful-romance"]}
+      ]
+    },
+    {
+      "id": "q17", "block": "Секреты", "mode": "pair",
+      "question": "Что они чаще всего скрывают друг от друга?",
+      "options": [
+        {"id":"a","text":"Настоящие чувства.","effects":{"forbiddenness":2,"guilt":2,"romance":2},"tags":["secret-romance"]},
+        {"id":"b","text":"Страх потерять другого.","effects":{"dependence":3,"tragedy":2},"tags":["doomed-romance"]},
+        {"id":"c","text":"Прошлое.","effects":{"secrets":3,"guilt":2},"tags":["secret-identities"]},
+        {"id":"d","text":"Поступок, который может всё разрушить.","effects":{"guilt":4,"danger":2,"tragedy":2},"tags":["toxic-romance"]},
+        {"id":"e","text":"Ничего: они говорят друг другу всё.","effects":{"trust":4,"tenderness":1},"tags":["devoted-love"]}
+      ]
+    },
+    {
+      "id": "q18", "block": "Секреты", "mode": "pair",
+      "question": "Если один узнаёт тайну другого, он…",
+      "options": [
+        {"id":"a","text":"Остаётся рядом и ничего не требует взамен.","effects":{"trust":3,"tenderness":3},"tags":["healing-romance"]},
+        {"id":"b","text":"Чувствует себя преданным.","effects":{"guilt":2,"tragedy":2,"jealousy":1},"tags":["toxic-romance"]},
+        {"id":"c","text":"Использует тайну как рычаг.","effects":{"power":4,"danger":2},"tags":["power-struggle"]},
+        {"id":"d","text":"Хочет узнать абсолютно всё.","effects":{"obsession":3,"secrets":2},"tags":["mutual-obsession"]},
+        {"id":"e","text":"Помогает скрыть её от остальных.","effects":{"trust":3,"protection":3,"forbiddenness":1},"tags":["secret-romance"]}
+      ]
+    },
+    {
+      "id": "q19", "block": "Запрет", "mode": "pair",
+      "question": "Почему им может быть нельзя быть вместе?",
+      "options": [
+        {"id":"a","text":"Правила, статус или семья.","effects":{"forbiddenness":4,"guilt":1},"tags":["forbidden-love"]},
+        {"id":"b","text":"Они принадлежат противостоящим сторонам.","effects":{"forbiddenness":3,"danger":3,"competition":1},"tags":["forbidden-attraction","battle-couple"]},
+        {"id":"c","text":"Один из них опасен для другого.","effects":{"forbiddenness":3,"danger":4},"tags":["monster-romance","dangerous-attraction"]},
+        {"id":"d","text":"Им просто нельзя позволить себе эту связь.","effects":{"forbiddenness":3,"guilt":2,"tragedy":2},"tags":["secret-romance"]},
+        {"id":"e","text":"Никаких запретов нет — проблема только в них самих.","effects":{"guilt":1,"obsession":2},"tags":["toxic-attraction"]}
+      ]
+    },
+    {
+      "id": "q20", "block": "Запрет", "mode": "pair",
+      "question": "Что они делают с запретным влечением?",
+      "options": [
+        {"id":"a","text":"Отрицают его.","effects":{"forbiddenness":3,"guilt":2},"tags":["forbidden-attraction"]},
+        {"id":"b","text":"Нарушают правила по чуть-чуть.","effects":{"chaos":2,"passion":2,"forbiddenness":2},"tags":["forbidden-love"]},
+        {"id":"c","text":"Срываются и потом жалеют.","effects":{"passion":3,"guilt":3,"tragedy":2},"tags":["toxic-cycle"]},
+        {"id":"d","text":"Решают, что правила не имеют значения.","effects":{"chaos":2,"romance":2,"danger":2},"tags":["runaways"]},
+        {"id":"e","text":"Прячут отношения от всех.","effects":{"forbiddenness":3,"secrets":2,"obsession":1},"tags":["secret-romance"]}
+      ]
+    },
+    {
+      "id": "q21", "block": "Зависимость", "mode": "pair",
+      "question": "Если они месяц не видятся, что происходит?",
+      "options": [
+        {"id":"a","text":"Ничего страшного: они продолжают жить своей жизнью.","effects":{"trust":3},"tags":["devoted-love"]},
+        {"id":"b","text":"Они скучают и постоянно переписываются.","effects":{"romance":2,"dependence":2},"tags":["slow-burn"]},
+        {"id":"c","text":"Один обязательно находит повод встретиться.","effects":{"obsession":3,"dependence":3},"tags":["mutual-obsession"]},
+        {"id":"d","text":"Оба делают вид, что всё нормально.","effects":{"guilt":2,"tragedy":2,"romance":1},"tags":["doomed-romance"]},
+        {"id":"e","text":"Они принимают это как вызов и устраивают побег друг к другу.","effects":{"chaos":4,"dependence":2},"tags":["runaways"]}
+      ]
+    },
+    {
+      "id": "q22", "block": "Зависимость", "mode": "pair",
+      "question": "Что один из них знает о другом лучше всех?",
+      "options": [
+        {"id":"a","text":"Его слабые места.","effects":{"trust":2,"obsession":2,"power":1},"tags":["mind-games"]},
+        {"id":"b","text":"Как его успокоить.","effects":{"tenderness":4,"trust":3},"tags":["healing-romance"]},
+        {"id":"c","text":"Как вывести его из себя.","effects":{"competition":2,"passion":2,"chaos":1},"tags":["provocation"]},
+        {"id":"d","text":"Что он сделает в любой опасной ситуации.","effects":{"protection":2,"trust":3},"tags":["protective-romance"]},
+        {"id":"e","text":"Чего он хочет — иногда раньше него самого.","effects":{"obsession":3,"romance":2},"tags":["mutual-obsession"]}
+      ]
+    },
+    {
+      "id": "q23", "block": "Зависимость", "mode": "pair",
+      "question": "Рядом друг с другом они становятся…",
+      "options": [
+        {"id":"a","text":"спокойнее.","effects":{"tenderness":3,"trust":3},"tags":["healing-romance"]},
+        {"id":"b","text":"смелее.","effects":{"romance":2,"danger":1,"trust":1},"tags":["battle-couple"]},
+        {"id":"c","text":"безрассуднее.","effects":{"chaos":4,"danger":2},"tags":["chaotic-romance"]},
+        {"id":"d","text":"уязвимее.","effects":{"tenderness":2,"dependence":2,"tragedy":1},"tags":["hurt-comfort"]},
+        {"id":"e","text":"опаснее.","effects":{"danger":4,"obsession":2},"tags":["dangerous-romance"]}
+      ]
+    },
+    {
+      "id": "q24", "block": "Зависимость", "mode": "pair",
+      "question": "Если отношения внезапно заканчиваются, кто первым не выдержит?",
+      "options": [
+        {"id":"a","text":"Они оба.","effects":{"dependence":4,"tragedy":2,"obsession":2},"tags":["mutual-obsession"]},
+        {"id":"b","text":"Первый персонаж.","effects":{"dependence":3,"tragedy":1},"tags":["obsessive-romance"]},
+        {"id":"c","text":"Второй персонаж.","effects":{"dependence":3,"tragedy":1},"tags":["obsessive-romance"]},
+        {"id":"d","text":"Никто — они умеют отпускать.","effects":{"trust":3},"tags":["healing-romance"]}
+      ]
+    },
+    {
+      "id": "q25", "block": "Власть", "mode": "pair",
+      "question": "Кто обычно первым пытается взять ситуацию под контроль?",
+      "options": [
+        {"id":"a","text":"Первый персонаж.","effects":{"power":3},"tags":["power-dynamic"]},
+        {"id":"b","text":"Второй персонаж.","effects":{"power":3},"tags":["power-dynamic"]},
+        {"id":"c","text":"Они постоянно перетягивают контроль.","effects":{"power":4,"competition":3,"passion":1},"tags":["power-struggle"]},
+        {"id":"d","text":"Никто — они удивительно хорошо договариваются.","effects":{"trust":3,"tenderness":1},"tags":["devoted-love"]}
+      ]
+    },
+    {
+      "id": "q26", "block": "Власть", "mode": "pair",
+      "question": "Что происходит, когда один пытается приказать другому?",
+      "options": [
+        {"id":"a","text":"Второй послушно соглашается.","effects":{"power":2,"trust":1},"tags":["power-dynamic"]},
+        {"id":"b","text":"Второй делает ровно наоборот.","effects":{"competition":3,"chaos":2},"tags":["rivals-to-lovers"]},
+        {"id":"c","text":"Начинается опасная игра в «кто кого».","effects":{"power":4,"passion":3,"danger":1},"tags":["power-struggle"]},
+        {"id":"d","text":"Приказ превращается в просьбу, потому что один не может заставить другого.","effects":{"tenderness":2,"trust":2,"romance":2},"tags":["devoted-love"]}
+      ]
+    },
+    {
+      "id": "q27", "block": "Власть", "mode": "pair",
+      "question": "Кто чаще уступает первым?",
+      "options": [
+        {"id":"a","text":"Тот, кто сильнее любит.","effects":{"romance":2,"tenderness":2},"tags":["devoted-love"]},
+        {"id":"b","text":"Тот, кто боится потерять другого.","effects":{"dependence":3,"tragedy":1},"tags":["doomed-romance"]},
+        {"id":"c","text":"Тот, кто понимает, что спор уже стал флиртом.","effects":{"passion":2,"chaos":2},"tags":["flirty-romance"]},
+        {"id":"d","text":"Никто. Им обоим нужно последнее слово.","effects":{"competition":4,"power":2},"tags":["power-struggle"]}
+      ]
+    },
+    {
+      "id": "q28", "block": "Соревнование", "mode": "pair",
+      "question": "Если они соревнуются, зачем им это на самом деле?",
+      "options": [
+        {"id":"a","text":"Чтобы доказать, кто лучше.","effects":{"competition":4,"power":2},"tags":["rivals-to-lovers"]},
+        {"id":"b","text":"Чтобы получить повод провести время вместе.","effects":{"romance":2,"competition":2},"tags":["flirty-romance"]},
+        {"id":"c","text":"Чтобы вывести другого из равновесия.","effects":{"competition":3,"passion":2,"obsession":1},"tags":["provocation"]},
+        {"id":"d","text":"Потому что вместе они любят нарушать правила.","effects":{"chaos":4,"danger":1},"tags":["partners-in-crime"]},
+        {"id":"e","text":"Им всё равно, кто победит — важен сам процесс.","effects":{"chaos":2,"romance":2,"passion":1},"tags":["playful-romance"]}
+      ]
+    },
+    {
+      "id": "q29", "block": "Соревнование", "mode": "pair",
+      "question": "Что происходит, если один внезапно оказывается лучше другого?",
+      "options": [
+        {"id":"a","text":"Второй искренне гордится им.","effects":{"trust":3,"tenderness":2},"tags":["devoted-love"]},
+        {"id":"b","text":"Второй немедленно требует реванш.","effects":{"competition":4,"chaos":1},"tags":["rivals-to-lovers"]},
+        {"id":"c","text":"Второй начинает сомневаться в себе.","effects":{"guilt":2,"tragedy":2,"dependence":1},"tags":["hurt-comfort"]},
+        {"id":"d","text":"Оба смеются и придумывают новое соревнование.","effects":{"chaos":3,"romance":2},"tags":["playful-romance"]}
+      ]
+    },
+    {
+      "id": "q30", "block": "Авантюра", "mode": "pair",
+      "question": "Их идеальный совместный вечер — это…",
+      "options": [
+        {"id":"a","text":"Тихое место, разговоры и музыка.","effects":{"romance":3,"tenderness":3},"tags":["slow-burn"]},
+        {"id":"b","text":"Бар, вечеринка и сомнительное решение.","effects":{"chaos":4,"passion":2},"tags":["chaotic-romance"]},
+        {"id":"c","text":"Ночная поездка без плана.","effects":{"chaos":3,"freedom":2,"romance":2},"tags":["runaways"]},
+        {"id":"d","text":"Свидание, о котором никто не должен знать.","effects":{"forbiddenness":3,"secrets":2,"romance":2},"tags":["secret-date"]},
+        {"id":"e","text":"Операция, афера или преступление, которое они провернут вместе.","effects":{"chaos":4,"danger":2,"trust":2},"tags":["partners-in-crime"]}
+      ]
+    },
+    {
+      "id": "q31", "block": "Авантюра", "mode": "pair",
+      "question": "Кто обычно говорит: «А давай сделаем это»?",
+      "options": [
+        {"id":"a","text":"Первый персонаж.","effects":{"chaos":3},"tags":["chaotic-romance"]},
+        {"id":"b","text":"Второй персонаж.","effects":{"chaos":3},"tags":["chaotic-romance"]},
+        {"id":"c","text":"Они оба одновременно.","effects":{"chaos":4,"romance":1},"tags":["partners-in-crime"]},
+        {"id":"d","text":"Никто: один предлагает, второй всегда говорит «нет», а потом идёт.","effects":{"chaos":3,"competition":1},"tags":["flirty-romance"]}
+      ]
+    },
+    {
+      "id": "q32", "block": "Авантюра", "mode": "pair",
+      "question": "Если они вместе нарушили закон или правило, реакция будет…",
+      "options": [
+        {"id":"a","text":"«Никто никогда не узнает» — и они смеются.","effects":{"chaos":4,"trust":2},"tags":["partners-in-crime"]},
+        {"id":"b","text":"Они пугаются последствий, но остаются вместе.","effects":{"danger":2,"trust":2,"romance":2},"tags":["runaways"]},
+        {"id":"c","text":"Один берёт всю вину на себя.","effects":{"protection":3,"guilt":3,"tragedy":1},"tags":["protective-romance"]},
+        {"id":"d","text":"Они спорят, кто виноват, а потом делают это снова.","effects":{"chaos":4,"competition":2},"tags":["chaotic-romance"]}
+      ]
+    },
+    {
+      "id": "q33", "block": "Боль и исцеление", "mode": "pair",
+      "question": "Как они реагируют на чужую слабость?",
+      "options": [
+        {"id":"a","text":"Осторожно и бережно.","effects":{"tenderness":4,"trust":3},"tags":["hurt-comfort"]},
+        {"id":"b","text":"Не умеют утешать, но остаются рядом.","effects":{"tenderness":2,"trust":2,"romance":2},"tags":["healing-romance"]},
+        {"id":"c","text":"Пытаются решить проблему вместо человека.","effects":{"protection":3,"power":1},"tags":["protective-romance"]},
+        {"id":"d","text":"Боятся собственной уязвимости и отстраняются.","effects":{"tragedy":2,"guilt":2,"forbiddenness":1},"tags":["guarded-heart"]},
+        {"id":"e","text":"Используют слабость друг друга как оружие во время ссор.","effects":{"danger":3,"power":3,"guilt":2},"tags":["toxic-romance"]}
+      ]
+    },
+    {
+      "id": "q34", "block": "Боль и исцеление", "mode": "pair",
+      "question": "Кто из них чаще становится для другого убежищем?",
+      "options": [
+        {"id":"a","text":"Первый персонаж.","effects":{"tenderness":3,"protection":2},"tags":["protective-romance"]},
+        {"id":"b","text":"Второй персонаж.","effects":{"tenderness":3,"protection":2},"tags":["protective-romance"]},
+        {"id":"c","text":"Они по очереди спасают друг друга.","effects":{"tenderness":3,"protection":3,"trust":2},"tags":["mutual-healing"]},
+        {"id":"d","text":"Никто: они скорее совместно рушат всё вокруг.","effects":{"chaos":4,"danger":2},"tags":["mutual-destruction"]}
+      ]
+    },
+    {
+      "id": "q35", "block": "Боль и исцеление", "mode": "pair",
+      "question": "Какой момент сильнее всего сближает их?",
+      "options": [
+        {"id":"a","text":"Первое признание в любви.","effects":{"romance":4,"tenderness":2},"tags":["devoted-love"]},
+        {"id":"b","text":"Совместно пережитая опасность.","effects":{"danger":2,"protection":3,"trust":2},"tags":["battle-couple"]},
+        {"id":"c","text":"Момент, когда один увидел другого совершенно беззащитным.","effects":{"tenderness":3,"obsession":1,"trust":2},"tags":["hurt-comfort"]},
+        {"id":"d","text":"Секрет, который они решили хранить вместе.","effects":{"trust":3,"forbiddenness":2,"secrets":2},"tags":["secret-romance"]},
+        {"id":"e","text":"Момент, когда они поняли, что уже натворили слишком много ради друг друга.","effects":{"tragedy":3,"dependence":3,"danger":2},"tags":["mutual-destruction"]}
+      ]
+    },
+    {
+      "id": "q36", "block": "Финальная сцена", "mode": "pair",
+      "question": "Если им дадут один последний вечер вместе, они…",
+      "options": [
+        {"id":"a","text":"Просто будут рядом.","effects":{"tenderness":4,"romance":2},"tags":["eternal-devotion"]},
+        {"id":"b","text":"Наконец скажут всё, что скрывали.","effects":{"romance":3,"tragedy":3,"forbiddenness":1},"tags":["doomed-romance"]},
+        {"id":"c","text":"Устроят последнее безумное приключение.","effects":{"chaos":4,"danger":2,"romance":2},"tags":["wild-romance"]},
+        {"id":"d","text":"Проведут его так, будто завтра не существует.","effects":{"passion":3,"tragedy":4,"romance":2},"tags":["last-night"]},
+        {"id":"e","text":"Попытаются спасти друг друга.","effects":{"protection":4,"tenderness":2,"tragedy":2},"tags":["protective-romance"]}
+      ]
+    },
+    {
+      "id": "q37", "block": "Финальная сцена", "mode": "pair",
+      "question": "Если один должен уйти, второй…",
+      "options": [
+        {"id":"a","text":"Отпустит, потому что любит.","effects":{"trust":3,"tenderness":3,"tragedy":2},"tags":["devoted-love"]},
+        {"id":"b","text":"Пойдёт за ним.","effects":{"dependence":3,"romance":2,"chaos":2},"tags":["runaways"]},
+        {"id":"c","text":"Попытается остановить любой ценой.","effects":{"obsession":3,"power":2,"danger":2},"tags":["possessive-love"]},
+        {"id":"d","text":"Сделает вид, что ему всё равно.","effects":{"guilt":2,"tragedy":3,"romance":1},"tags":["doomed-romance"]},
+        {"id":"e","text":"Уйдёт первым, чтобы другой не успел его бросить.","effects":{"tragedy":3,"guilt":2,"danger":1},"tags":["toxic-cycle"]}
+      ]
+    },
+    {
+      "id": "q38", "block": "Финальная сцена", "mode": "pair",
+      "question": "Какой поцелуй больше всего похож на них?",
+      "options": [
+        {"id":"a","text":"Первый, осторожный и почти невесомый.","effects":{"romance":3,"tenderness":3},"tags":["slow-burn"]},
+        {"id":"b","text":"После ссоры — резкий и отчаянный.","effects":{"passion":4,"danger":1,"obsession":2},"tags":["toxic-attraction"]},
+        {"id":"c","text":"Тайный, украденный там, где нельзя.","effects":{"forbiddenness":4,"passion":2},"tags":["forbidden-attraction"]},
+        {"id":"d","text":"Смеющийся, спонтанный, посреди очередной авантюры.","effects":{"chaos":3,"romance":3},"tags":["chaotic-romance"]},
+        {"id":"e","text":"Такой, после которого оба понимают: пути назад нет.","effects":{"obsession":3,"tragedy":2,"passion":3},"tags":["mutual-obsession"]}
+      ]
+    },
+    {
+      "id": "q39", "block": "Финальная сцена", "mode": "pair",
+      "question": "Что они никогда не смогут сказать друг другу легко?",
+      "options": [
+        {"id":"a","text":"«Я люблю тебя». ","effects":{"forbiddenness":2,"guilt":2,"romance":3},"tags":["secret-romance"]},
+        {"id":"b","text":"«Мне страшно тебя потерять». ","effects":{"dependence":3,"tragedy":2,"tenderness":2},"tags":["doomed-romance"]},
+        {"id":"c","text":"«Я нуждаюсь в тебе». ","effects":{"dependence":4,"obsession":2},"tags":["mutual-obsession"]},
+        {"id":"d","text":"«Ты был прав». ","effects":{"competition":3,"power":2,"romance":1},"tags":["rivals-to-lovers"]},
+        {"id":"e","text":"«Прости». ","effects":{"guilt":4,"tragedy":2,"tenderness":1},"tags":["second-chance"]}
+      ]
+    },
+    {
+      "id": "q40", "block": "Финальная сцена", "mode": "pair",
+      "question": "И последнее: если описать их отношения одной фразой, это…",
+      "options": [
+        {"id":"a","text":"«Мы друг другу дом». ","effects":{"romance":3,"tenderness":4,"trust":3},"tags":["healing-romance","devoted-love"]},
+        {"id":"b","text":"«Мы друг другу катастрофа». ","effects":{"danger":4,"chaos":3,"passion":2},"tags":["toxic-romance","mutual-destruction"]},
+        {"id":"c","text":"«Мы знаем, что нельзя, но всё равно выбираем друг друга». ","effects":{"forbiddenness":4,"romance":3,"tragedy":2},"tags":["forbidden-love"]},
+        {"id":"d","text":"«Мы два идиота с одним планом». ","effects":{"chaos":5,"romance":2,"trust":2},"tags":["partners-in-crime"]},
+        {"id":"e","text":"«Мы не умеем быть порознь». ","effects":{"dependence":5,"obsession":3,"romance":2},"tags":["mutual-obsession"]},
+        {"id":"f","text":"«Мы сначала уничтожим друг друга, а потом признаемся, что это была любовь». ","effects":{"danger":4,"passion":3,"tragedy":3,"obsession":2},"tags":["enemies-to-lovers","mutual-destruction"]}
+      ]
+    }
+  ]
+}
