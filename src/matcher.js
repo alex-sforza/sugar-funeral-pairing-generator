@@ -1,98 +1,35 @@
-/**
- * Sugar Funeral Pairing Generator — song matcher
- *
- * Input: questionnaire answers already normalized into relationship tags.
- * Output: ranked Sugar Funeral songs.
- *
- * The matcher deliberately separates:
- *   1. hard relationship archetypes;
- *   2. supporting themes;
- *   3. emotional intensity.
- *
- * This keeps one incidental answer from overpowering the actual relationship.
- */
-
-const DEFAULT_WEIGHTS = {
-  pairingType: 8,
-  theme: 3,
-  intensity: 1,
-};
-
-function normalize(value) {
-  return String(value || "")
-    .trim()
-    .toLowerCase()
-    .replace(/[ё]/g, "е");
-}
-
-function toSet(values) {
-  return new Set((Array.isArray(values) ? values : [values]).filter(Boolean).map(normalize));
-}
-
-function intersectionSize(a, b) {
-  let count = 0;
-  for (const item of a) if (b.has(item)) count++;
-  return count;
-}
-
-/**
- * profile example:
- * {
- *   pairingTypes: ["enemies-to-lovers", "rivals-to-lovers"],
- *   themes: ["jealousy", "danger", "tension"],
- *   intensity: { romance: 8, passion: 7, obsession: 4, danger: 6, tenderness: 3, tragedy: 2, chaos: 5 }
- * }
- *
- * song example:
- * {
- *   title, album, pairing_types, themes,
- *   scores: { romance, passion, obsession, danger, tenderness, tragedy, chaos }
- * }
- */
-export function scoreSong(profile, song, weights = DEFAULT_WEIGHTS) {
-  const wantedTypes = toSet(profile.pairingTypes);
-  const wantedThemes = toSet(profile.themes);
-  const songTypes = toSet(song.pairing_types);
-  const songThemes = toSet(song.themes);
-
-  const typeMatches = intersectionSize(wantedTypes, songTypes);
-  const themeMatches = intersectionSize(wantedThemes, songThemes);
-
-  let score =
-    typeMatches * weights.pairingType +
-    themeMatches * weights.theme;
-
-  if (profile.intensity && song.scores) {
-    for (const [axis, wanted] of Object.entries(profile.intensity)) {
-      const actual = Number(song.scores[axis]);
-      if (!Number.isFinite(actual)) continue;
-      const distance = Math.abs(Number(wanted) - actual);
-      score += Math.max(0, 10 - distance) * weights.intensity * 0.1;
-    }
+/** Sugar Funeral Pairing Matcher */
+export function scoreSong(song, profile, answers = {}) {
+  const songTypes = new Set(song.pairing_types || []);
+  const songThemes = new Set(song.themes || []);
+  let score = 0;
+  const reasons = [];
+  for (const type of answers.pairing_types || []) {
+    if (songTypes.has(type)) { score += 30; reasons.push(`совпадает динамика: ${type}`); }
   }
-
-  return {
-    ...song,
-    score: Number(score.toFixed(3)),
-    matches: {
-      pairingTypes: [...wantedTypes].filter((x) => songTypes.has(x)),
-      themes: [...wantedThemes].filter((x) => songThemes.has(x)),
-    },
-  };
+  for (const theme of answers.themes || []) {
+    if (songThemes.has(theme)) { score += 10; reasons.push(`совпадает тема: ${theme}`); }
+  }
+  const dimensions = ['romance','passion','obsession','danger','tenderness','tragedy','chaos'];
+  let matches = 0;
+  for (const key of dimensions) {
+    if (typeof answers[key] !== 'number' || typeof profile[key] !== 'number') continue;
+    const distance = Math.abs(answers[key] - profile[key]);
+    score += Math.max(0, 10 - distance) * 1.5;
+    matches++;
+  }
+  if (matches) reasons.push('эмоциональный профиль совпадает');
+  return { song, score: Number(score.toFixed(2)), reasons };
 }
 
-export function rankSongs(profile, songs, options = {}) {
-  const weights = { ...DEFAULT_WEIGHTS, ...(options.weights || {}) };
-  const limit = options.limit || 10;
-
-  return songs
-    .map((song) => scoreSong(profile, song, weights))
-    .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-    .slice(0, limit);
+export function rankSongs(songs, profiles, answers = {}) {
+  const byTitle = new Map(profiles.map(p => [p.title, p]));
+  return songs.map(song => {
+    const profile = byTitle.get(song.title);
+    return profile ? scoreSong(song, profile, answers) : null;
+  }).filter(Boolean).sort((a,b) => b.score - a.score);
 }
 
-export function pickWinner(profile, songs, options = {}) {
-  return rankSongs(profile, songs, { ...options, limit: 1 })[0] || null;
+export function pickSong(songs, profiles, answers = {}) {
+  return rankSongs(songs, profiles, answers)[0] || null;
 }
-
-export default { scoreSong, rankSongs, pickWinner };
