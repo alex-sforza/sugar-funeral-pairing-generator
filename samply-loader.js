@@ -1,11 +1,29 @@
 /* Sugar Funeral — Samply loader
    Loads the complete track -> Samply map and upgrades the player after each generation.
+   Also prepares a clean form on first load and hides the temporary test button.
 */
 (function(){
   'use strict';
   const DB_URL = './data/samply-links.json';
   let tracks = [];
   let ready = false;
+
+  // Production version: the 10-random test control is no longer shown.
+  function prepareCleanStart(){
+    const random10 = document.getElementById('random10');
+    if(random10) random10.style.display = 'none';
+
+    // Prevent the browser from restoring previous button selections.
+    document.querySelectorAll('.choice.selected').forEach(btn => btn.classList.remove('selected'));
+
+    // Start with an empty form instead of restored browser values.
+    document.querySelectorAll('input, textarea').forEach(el => {
+      if(!el.matches('[type="button"],[type="submit"],[type="reset"]')) el.value = '';
+    });
+    document.querySelectorAll('select').forEach(select => {
+      if(select.options.length) select.selectedIndex = 0;
+    });
+  }
 
   function normalize(s){
     return String(s || '').toLowerCase().replace(/[–—−]/g,'-').replace(/\s+/g,' ').trim();
@@ -48,6 +66,8 @@
       }
     });
   }
+
+  prepareCleanStart();
 
   fetch(DB_URL, {cache:'no-store'})
     .then(r => { if(!r.ok) throw new Error('Samply database: '+r.status); return r.json(); })
