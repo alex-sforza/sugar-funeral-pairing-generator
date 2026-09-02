@@ -1,54 +1,1127 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sugar Funeral — Pairing Aesthetic Generator v8.1</title>
+<!DOCTYPE html>
+<!-- saved from url=(0336)file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sugar Funeral — Pairing Aesthetic Generator v8.1 — чистый старт</title>
+<style>
+:root{
+  --bg:#09070c; --panel:#121019; --panel2:#18121d; --ink:#f5edf5; --muted:#b7a9bb;
+  --line:#3b293f; --accent:#ff2f8b; --accent2:#8e4dff; --cyan:#39e7ff;
+  --soft:#241728; --gold:#e8c56b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.5;
+  background:
+    linear-gradient(180deg,rgba(8,5,12,.78),rgba(8,5,12,.96)),
+    url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2200&q=85")
+    center top/cover fixed;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+  background:
+    radial-gradient(circle at 15% 10%,#ff2f8b55,transparent 24%),
+    radial-gradient(circle at 85% 20%,#8e4dff55,transparent 25%),
+    repeating-linear-gradient(115deg,transparent 0 4px,#fff1 5px 6px,transparent 7px 16px);
+  mix-blend-mode:screen;
+}
+.wrap{max-width:1160px;margin:auto;padding:34px 22px 80px;position:relative}
+.hero{text-align:center;padding:26px 0 32px}
+.kicker{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);font-weight:900}
+h1{
+  margin:8px 0 10px;font:800 clamp(42px,7vw,78px)/.95 Georgia,serif;
+  text-shadow:0 0 12px #ff2f8b77,0 0 34px #8e4dff55;
+}
+.lead{max-width:760px;margin:auto;color:#d7cbdc;font-size:16px}
+.card,.result{
+  background:linear-gradient(145deg,#121019f2,#0d0a11f2);border:1px solid #5a3a61;
+  border-radius:24px;padding:25px;margin:18px 0;box-shadow:0 18px 55px #000b,0 0 28px #ff2f8b0b;
+  backdrop-filter:blur(8px)
+}
+.section-title{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);font-weight:900;margin-bottom:12px}
+.people,.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.person{background:#17121bf0;border:1px solid var(--line);border-radius:18px;padding:18px}
+label{display:block;font-weight:750;font-size:14px;margin:13px 0}
+input,textarea{display:block;width:100%;margin-top:7px;border:1px solid #4a3650;border-radius:12px;background:#0d0a11;color:var(--ink);padding:12px 13px;font:inherit;outline:none}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #ff2f8b18}
+textarea{min-height:78px;resize:vertical}
+.optional,.hint{font-weight:400;color:var(--muted);font-size:12px}
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mrow{display:grid;grid-template-columns:1fr 120px;gap:8px;align-items:center;background:#15101a;border:1px solid var(--line);border-radius:12px;padding:9px 11px}
+.mrow select{margin:0}
+select{width:100%;border:1px solid #4a3650;border-radius:10px;background:#0d0a11;color:var(--ink);padding:10px;font:inherit}
+.choice-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.choice{border:1px solid #4a3650;background:#17121d;color:#ddd1e2;border-radius:999px;padding:9px 13px;font:650 13px/1.2 Inter,Arial,sans-serif;cursor:pointer;transition:.15s ease}
+.choice:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.choice.selected{background:linear-gradient(90deg,#ff2f8b,#8e4dff);border-color:transparent;color:#fff;box-shadow:0 0 15px #ff2f8b33}
+.choice-note{margin-top:7px;color:var(--muted);font-size:12px}
+.html-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(3,2,6,.84);backdrop-filter:blur(8px)}
+.html-modal.open{display:flex}
+.html-modal-inner{width:min(1000px,96vw);height:min(760px,92vh);background:#0d0a11;border:1px solid #704477;border-radius:22px;padding:20px;box-shadow:0 0 60px #8e4dff44;display:flex;flex-direction:column}
+.html-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:12px}
+.html-close{padding:8px 12px!important}
+#htmlCode{flex:1;width:100%;resize:none;background:#07050a;color:#e9ddec;border:1px solid #3b293f;border-radius:14px;padding:15px;font:12px/1.45 Consolas,monospace;outline:none}
+.html-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 34px}
+button.main,button.dark,button.light{border:0;border-radius:13px;padding:13px 17px;font-weight:900;cursor:pointer}
+button.main{background:linear-gradient(90deg,#ff2f8b,#8e4dff);color:#fff;box-shadow:0 0 24px #ff2f8b33}
+button.dark{background:#221728;color:#fff;border:1px solid #5a3a61}
+button.light{background:#e8dce9;color:#1b121f}
+button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+#results{margin-top:20px}
+.result{overflow:hidden}
+.aesthetic{
+  border-radius:20px;padding:22px;background:
+  linear-gradient(180deg,#0c0910e8,#100b14f5),
+  url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2200&q=85") center/cover;
+  border:1px solid #6a3f71;box-shadow:inset 0 0 80px #0008
+}
+.pair-head{display:grid;grid-template-columns:118px 118px 1fr;gap:14px;align-items:center}
+.portrait{height:150px;border-radius:16px;overflow:hidden;background:#17121d;border:1px solid #6a466e;box-shadow:0 0 20px #ff2f8b14}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.pname{text-align:center;font-weight:900;margin-top:7px;color:#eee5ef}
+.pair-title{text-align:center}
+.pair-title h2{font:800 clamp(30px,5vw,58px)/.98 Georgia,serif;margin:0 0 10px;text-shadow:0 0 18px #8e4dff66}
+.type{color:#ff78b3;font-weight:900;letter-spacing:.04em}
+.quote{font:italic 20px Georgia,serif;color:#ddd0df;margin-top:12px}
+.songbox{margin-top:22px;padding:20px;border-radius:18px;background:#0b0810dd;border:1px solid #5c3c64}
+.songbox .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--cyan);font-weight:900}
+.songbox h3{margin:4px 0 2px;font:800 28px/1.1 Georgia,serif}
+.songmeta{color:#b9acbd;font-size:13px}
+.player{margin-top:14px}
+.player iframe{width:100%;min-height:150px;border:0;border-radius:15px;background:#120d16}
+.open-song{display:inline-block;margin-top:9px;color:#72efff;text-decoration:none;font-size:12px}
+.top5{margin-top:20px;background:#0b0810aa;border:1px solid #4a3650;border-radius:14px;padding:12px 16px}
+.top5 summary{cursor:pointer;font:800 22px Georgia,serif;color:#eee4ef;list-style-position:inside}
+.top5-list{margin-top:8px}
+.top5 h3,.fandom h3{font:800 22px Georgia,serif;margin:0 0 8px}
+.songrow{padding:11px 0;border-bottom:1px solid #3b293f;display:flex;justify-content:space-between;gap:10px}
+.songrow a{color:#eee;text-decoration:none}
+.songrow a:hover{color:#72efff}
+.score{font-weight:900;color:#ff78b3;white-space:nowrap}
+.profile{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
+.pill{background:#241728;border:1px solid #4a3650;border-radius:99px;padding:6px 10px;font-size:12px;color:#e7dbe9}
+.fandom{margin-top:25px;padding-top:4px}
+.review,.wish{padding:15px 0;border-bottom:1px solid #3b293f}
+.handle{color:#ff6cab;font-weight:900}
+.review p,.wish p{margin:5px 0 0;font:17px/1.5 Georgia,serif;color:#eee4ef}
+.wish.special{border-left:3px solid var(--cyan);padding-left:13px}
+.notice{padding:13px 15px;background:#160f19;border-left:3px solid var(--accent);border-radius:10px;color:#cdbed0;font-size:13px}
+.export-box{display:none;margin-top:15px}
+.export-box textarea{min-height:180px;font:12px/1.4 ui-monospace,Consolas,monospace}.song-logic-note{font-size:12px;color:#9f91a5;margin:4px 0 -10px;text-align:center}
+.small{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;border:1px solid #5a3a61;border-radius:999px;padding:5px 9px;color:#d9cbe0;font-size:11px;margin:3px 3px 0 0}
+@media(max-width:760px){
+  .people,.grid2,.matrix{grid-template-columns:1fr}
+  .pair-head{grid-template-columns:1fr 1fr}
+  .pair-title{grid-column:1/-1;grid-row:1;margin-bottom:8px}
+  .portrait{height:190px}
+}
+@media(max-width:500px){
+  .wrap{padding:18px 12px 50px}
+  .card,.result{padding:17px}
+  .mrow{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<div id="app">Загрузка генератора…</div>
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">SUGAR FUNERAL · PAIRING ARCHIVE · v8.1</div>
+  <h1>Эстетика пейринга</h1>
+  <p class="lead">Два персонажа. Одна динамика. Песня, которую теперь невозможно слушать нормально. И фандом, который уже всё придумал за сценаристов.</p>
+</header>
+
+<section class="card">
+  <div class="section-title">01 · ПЕРСОНАЖИ</div>
+  <div class="people">
+    <div class="person">
+      <h3>Персонаж №1</h3>
+      <label>Имя<input id="name1" placeholder="Имя персонажа"></label>
+      <label>Ссылка на фотографию<input id="photo1" type="url" placeholder="https://..."></label>
+    </div>
+    <div class="person">
+      <h3>Персонаж №2</h3>
+      <label>Имя<input id="name2" placeholder="Имя персонажа"></label>
+      <label>Ссылка на фотографию<input id="photo2" type="url" placeholder="https://..."></label>
+    </div>
+  </div>
+  <label>Название пейринга <span class="optional">необязательно</span><input id="pairName" placeholder="Если пусто — имя №1 × имя №2"></label>
+</section>
+
+<section class="card">
+  <div class="section-title">02 · КАК ВСЁ НАЧАЛОСЬ</div>
+  <div class="grid2">
+    <label>Как они познакомились?
+      <div class="choice-buttons" data-target="meet" data-limit="1">
+        <button class="choice" data-value="случайно">случайно</button><button class="choice" data-value="из-за общего дела">из-за общего дела</button>
+        <button class="choice" data-value="они были врагами">они были врагами</button><button class="choice" data-value="один спас другого">один спас другого</button>
+        <button class="choice" data-value="один сразу заинтересовался">один сразу заинтересовался</button><button class="choice" data-value="они давно знали друг друга">они давно знали друг друга</button>
+      </div>
+    </label>
+    <label>Кто первым обратил внимание на второго?
+      <div class="choice-buttons" data-target="attention" data-limit="1">
+        <button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">никто</button>
+      </div>
+    </label>
+    <label>Кто первым понял, что происходит что-то серьёзное?
+      <div class="choice-buttons" data-target="serious" data-limit="1">
+        <button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">ещё никто</button>
+      </div>
+    </label>
+    <label>Кто первым сделал шаг навстречу?
+      <select id="firstStep">
+        <option>№1</option><option>№2</option><option>оба</option><option>никто — всё произошло само</option>
+      </select>
+    </label>
+    <label>Первое впечатление №1
+      <textarea id="firstThought1" placeholder="Что №1 подумал(а) о №2 при первой встрече?"></textarea>
+    </label>
+    <label>Первое впечатление №2
+      <textarea id="firstThought2" placeholder="Что №2 подумал(а) о №1 при первой встрече?"></textarea>
+    </label>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">03 · ИХ ДИНАМИКА</div>
+  <p class="hint">Выбирай несколько вариантов — они будут влиять и на эмоциональный профиль, и на выбор песни.</p>
+  <div class="choice-buttons" data-target="dynamics" data-limit="3">
+    <button class="choice" data-value="enemies-to-lovers">⚔️ Враги → любовники</button>
+    <button class="choice" data-value="friends-to-lovers">🌿 Друзья → любовники</button>
+    <button class="choice" data-value="forbidden-attraction">🔒 Запретная связь</button>
+    <button class="choice" data-value="slow-burn">🌙 Slow burn</button>
+    <button class="choice" data-value="toxic-attraction">🖤 Токсичное притяжение</button>
+    <button class="choice" data-value="mutual-obsession">🩸 Взаимная одержимость</button>
+    <button class="choice" data-value="opposites">☯️ Противоположности</button>
+    <button class="choice" data-value="partners-in-crime">🔥 Сообщники</button>
+    <button class="choice" data-value="doomed-romance">🥀 Обречённая любовь</button>
+    <button class="choice" data-value="protective-romance">🛡️ Защитник × тот, кого нельзя потерять</button>
+    <button class="choice" data-value="hurt-comfort">🤍 Hurt / comfort</button>
+    <button class="choice" data-value="secret-relationship">🌫️ Тайные отношения</button>
+    <button class="choice" data-value="power-dynamic">♟️ Власть × власть</button>
+    <button class="choice" data-value="complicated-friendship">🫀 Сложная дружба</button>
+    <button class="choice" data-value="none">💫 Они сами ещё не поняли, что встречаются</button>
+  </div>
+  <div class="choice-note">До 3 вариантов. Первый выбранный считается основной динамикой.</div>
+
+  <h3 style="margin:22px 0 8px">Что между ними сильнее всего?</h3>
+  <div class="choice-buttons" data-target="bond" data-limit="4">
+    <button class="choice" data-value="доверие">доверие</button><button class="choice" data-value="физическое притяжение">физическое притяжение</button>
+    <button class="choice" data-value="эмоциональная зависимость">эмоциональная зависимость</button><button class="choice" data-value="интеллектуальная связь">интеллектуальная связь</button>
+    <button class="choice" data-value="чувство юмора">чувство юмора</button><button class="choice" data-value="общая тайна">общая тайна</button>
+    <button class="choice" data-value="общая травма">общая травма</button><button class="choice" data-value="чувство опасности">чувство опасности</button>
+    <button class="choice" data-value="желание спасать друг друга">желание спасать друг друга</button><button class="choice" data-value="невозможность отпустить">невозможность отпустить</button>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">04 · КТО ИЗ НИХ?</div>
+  <p class="hint">Здесь удобнее выбирать кнопками, а не листать огромный список.</p>
+  <div id="matrix" class="matrix"><div class="mrow"><span>делает первый шаг</span><select data-m="0"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>провоцирует</span><select data-m="1"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>ревнует</span><select data-m="2"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>защищает</span><select data-m="3"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>уступает</span><select data-m="4"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>врёт ради другого</span><select data-m="5"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>попадает в неприятности</span><select data-m="6"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>первым мирится</span><select data-m="7"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>скрывает свои чувства</span><select data-m="8"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>готов пойти на риск</span><select data-m="9"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>сильнее боится потери</span><select data-m="10"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div><div class="mrow"><span>делает вид, что ему всё равно</span><select data-m="11"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div></div>
+</section>
+
+<section class="card">
+  <div class="section-title">04 · КОНФЛИКТ И ПОДТЕКСТ</div>
+  <div class="grid2">
+    <label>Что мешает им быть вместе?
+      <select id="obstacle">
+        <option>прошлое</option>
+        <option>тайна</option>
+        <option>разные стороны конфликта</option>
+        <option>страх близости</option>
+        <option>обязанности</option>
+        <option>разница в статусе</option>
+        <option>расстояние</option>
+        <option>кто-то третий</option>
+        <option>опасность</option>
+        <option>моральные принципы</option>
+        <option>долг</option>
+        <option>война / конфликт</option>
+        <option>секрет одного из них</option>
+        <option>взаимная ненависть</option>
+        <option>обстоятельства</option>
+        <option>они сами</option>
+        <option>они слишком похожи</option>
+        <option>они слишком разные</option>
+        <option>ничего — они просто всё усложняют</option>
+      </select>
+    </label>
+    <label>Что они делают, когда становится страшно?
+      <select id="fearResponse">
+        <option>сближаются</option>
+        <option>отдаляются</option>
+        <option>шутят</option>
+        <option>ссорятся</option>
+        <option>молчат</option>
+        <option>защищают друг друга</option>
+        <option>делают вид, что всё нормально</option>
+        <option>рискуют ещё сильнее</option>
+        <option>исчезают на время</option>
+        <option>начинают контролировать всё вокруг</option>
+        <option>признаются друг другу в правде</option>
+        <option>цепляются друг за друга</option>
+        <option>делают вид, что им всё равно</option>
+        <option>переходят в наступление</option>
+      </select>
+    </label>
+    <label>Как ощущается притяжение?
+      <select id="attraction">
+        <option>мягкое</option>
+        <option>медленное</option>
+        <option>наэлектризованное</option>
+        <option>опасное</option>
+        <option>почти болезненное</option>
+        <option>необъяснимое</option>
+        <option>запретное</option>
+        <option>игровое</option>
+        <option>разрушительное</option>
+        <option>неизбежное</option>
+        <option>навязчивое</option>
+        <option>медленно нарастающее</option>
+        <option>взрывное</option>
+        <option>хрупкое</option>
+        <option>тёплое</option>
+        <option>холодное</option>
+      </select>
+    </label>
+    <label>Если убрать романтику, что останется?
+      <select id="noRomance">
+        <option>дружба</option>
+        <option>доверие</option>
+        <option>взаимное уважение</option>
+        <option>привычка</option>
+        <option>взаимная зависимость</option>
+        <option>соперничество</option>
+        <option>страх</option>
+        <option>общая цель</option>
+        <option>общая тайна</option>
+        <option>партнёрство</option>
+        <option>ненависть</option>
+        <option>ничего — их держит только притяжение</option>
+        <option>ничего — всё держится на выборе</option>
+        <option>семья</option>
+      </select>
+    </label>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">05 · ЧТО ОНИ НИКОГДА НЕ СКАЖУТ ВСЛУХ</div>
+  <div class="grid2">
+    <label>Что №1 никогда не признается №2?
+      <select id="admit1">
+        <option>что давно влюблён(а)</option>
+        <option>что постоянно думает о №2</option>
+        <option>что ревнует сильнее, чем показывает</option>
+        <option>что боится потерять №2</option>
+        <option>что рядом с №2 чувствует себя в безопасности</option>
+        <option>что без №2 ему/ей хуже</option>
+        <option>что хочет, чтобы №2 остался/осталась</option>
+        <option>что уже простил(а) то, чего не должен(на) был(а)</option>
+        <option>что готов(а) нарушить правила ради №2</option>
+        <option>что именно №2 стал(а) его/её слабым местом</option>
+        <option>что он/она скучает</option>
+        <option>что всё понял(а) намного раньше</option>
+      </select>
+    </label>
+    <label>Что №2 никогда не признается №1?
+      <select id="admit2">
+        <option>что давно влюблён(а)</option>
+        <option>что постоянно думает о №1</option>
+        <option>что ревнует сильнее, чем показывает</option>
+        <option>что боится потерять №1</option>
+        <option>что рядом с №1 чувствует себя в безопасности</option>
+        <option>что без №1 ему/ей хуже</option>
+        <option>что хочет, чтобы №1 остался/осталась</option>
+        <option>что уже простил(а) то, чего не должен(на) был(а)</option>
+        <option>что готов(а) нарушить правила ради №1</option>
+        <option>что именно №1 стал(а) его/её слабым местом</option>
+        <option>что он/она скучает</option>
+        <option>что всё понял(а) намного раньше</option>
+      </select>
+    </label>
+    <label>Чего №1 боится лишиться?<textarea id="loss1" placeholder="Что №1 боится потерять сильнее всего?"></textarea></label>
+    <label>Чего №2 боится лишиться?<textarea id="loss2" placeholder="Что №2 боится потерять сильнее всего?"></textarea></label>
+    <label>За что №1 не сможет простить №2?<textarea id="forgive1" placeholder="Где для №1 проходит точка невозврата?"></textarea></label>
+    <label>За что №2 не сможет простить №1?<textarea id="forgive2" placeholder="Где для №2 проходит точка невозврата?"></textarea></label>
+    <label>Что заставило бы их окончательно перейти черту?
+      <select id="edge">
+        <option>угроза жизни одного из них</option>
+        <option>потеря одного из них</option>
+        <option>ревность, которую больше невозможно скрыть</option>
+        <option>случайное признание</option>
+        <option>поцелуй</option>
+        <option>ночной разговор по душам</option>
+        <option>момент, когда один впервые покажет слабость</option>
+        <option>необходимость выбрать друг друга</option>
+        <option>ссора, после которой уже нельзя сделать вид, что всё нормально</option>
+        <option>нарушение главного запрета</option>
+        <option>кто-то из них действительно уйдёт</option>
+        <option>ничего — они сами всё оттянут до последнего</option>
+      </select>
+    </label>
+    <label>Какую правду об их отношениях они поймут последними?<textarea id="hiddenTruth" placeholder="Что уже видит читатель или фандом, но сами они пока отказываются признавать?"></textarea></label>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">06 · ШИППЕРСКИЙ ОТДЕЛ</div>
+  <div class="grid2">
+    <label>Кто первым поцелует другого?
+      <div class="choice-buttons" data-target="kiss" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">ещё никто</button></div>
+    </label>
+    <label>Кто первым признается в чувствах?
+      <div class="choice-buttons" data-target="confess" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">никто</button></div>
+    </label>
+    <label>Кто скорее скажет «мы просто друзья» после очевиднейшего флирта?
+      <div class="choice-buttons" data-target="friends" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">оба всё понимают</button></div>
+    </label>
+    <label>Кто ревнует сильнее?
+      <div class="choice-buttons" data-target="jealous" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">никто</button></div>
+    </label>
+    <label>Кто скорее придёт ночью со словами «нам надо поговорить»?
+      <div class="choice-buttons" data-target="night" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">никто</button></div>
+    </label>
+    <label>Кто скорее скажет «останься»?
+      <div class="choice-buttons" data-target="stay" data-limit="1"><button class="choice" data-value="1">№1</button><button class="choice" data-value="2">№2</button><button class="choice" data-value="both">оба</button><button class="choice" data-value="none">никто</button></div>
+    </label>
+  </div>
+
+  <h3 style="margin:22px 0 8px">Какие сцены бы очень хотелось увидеть?</h3>
+  <div class="choice-buttons" data-target="scenes" data-limit="6">
+    <button class="choice" data-value="вынужденная близость">вынужденная близость</button><button class="choice" data-value="ревность">ревность</button>
+    <button class="choice" data-value="ссора → примирение">ссора → примирение</button><button class="choice" data-value="ночной разговор">ночной разговор</button>
+    <button class="choice" data-value="совместное путешествие">совместное путешествие</button><button class="choice" data-value="уход за раненым">уход за раненым</button>
+    <button class="choice" data-value="танец">танец</button><button class="choice" data-value="признание под дождём">признание под дождём</button>
+    <button class="choice" data-value="«останься»">«останься»</button><button class="choice" data-value="один защищает другого">один защищает другого</button>
+    <button class="choice" data-value="ревность с отрицанием">ревность с отрицанием</button><button class="choice" data-value="случайное признание">случайное признание</button>
+    <button class="choice" data-value="почти-поцелуй">почти-поцелуй</button><button class="choice" data-value="поцелуй после ссоры">поцелуй после ссоры</button>
+    <button class="choice" data-value="совместное преступление">совместное преступление</button><button class="choice" data-value="один впервые показывает слабость">один впервые показывает слабость</button>
+    <button class="choice" data-value="встреча после разлуки">встреча после разлуки</button><button class="choice" data-value="пусть наконец перестанут тормозить">пусть наконец перестанут тормозить</button>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">07 · МУЗЫКАЛЬНЫЙ ПРОФИЛЬ</div>
+  <h3 style="margin:0 0 8px">Какие песни больше им подходят?</h3>
+  <p class="hint">Выбирай до 5 ощущений — не жанры, а то, что должна оставлять песня.</p>
+  <div class="choice-buttons" data-target="feel" data-limit="5">
+    <button class="choice" data-value="нежность">нежность</button><button class="choice" data-value="страсть">страсть</button>
+    <button class="choice" data-value="тоска">тоска</button><button class="choice" data-value="опасность">опасность</button>
+    <button class="choice" data-value="ревность">ревность</button><button class="choice" data-value="надежда">надежда</button>
+    <button class="choice" data-value="одержимость">одержимость</button><button class="choice" data-value="свобода">свобода</button>
+    <button class="choice" data-value="веселье">веселье</button><button class="choice" data-value="безумие">безумие</button>
+    <button class="choice" data-value="отчаяние">отчаяние</button><button class="choice" data-value="чувство дома">чувство дома</button>
+    <button class="choice" data-value="предчувствие катастрофы">предчувствие катастрофы</button><button class="choice" data-value="желание">желание</button>
+    <button class="choice" data-value="сожаление">сожаление</button><button class="choice" data-value="триумф">триумф</button>
+  </div>
+  <div class="grid2" style="margin-top:15px">
+    <label>Атмосфера
+      <select id="mood">
+        <option>ночная</option><option>неоновая</option><option>готическая</option><option>романтическая</option><option>тревожная</option>
+        <option>грязная / рок-н-ролльная</option><option>мистическая</option><option>кинематографичная</option><option>трагическая</option><option>уютная</option>
+        <option>солнечная</option><option>осенняя</option><option>зимняя</option><option>летняя</option>
+      </select>
+    </label>
+    <label>Темп истории
+      <select id="tempo"><option>медленный</option><option>средний</option><option>стремительный</option><option>то медленно, то взрывается</option></select>
+    </label>
+    <label>Чем должна закончиться песня?
+      <select id="songEnding">
+        <option>поцелуем</option><option>признанием</option><option>надеждой</option><option>счастливым финалом</option>
+        <option>горько-сладким послевкусием</option><option>разлукой</option><option>катастрофой</option><option>ощущением, что всё только начинается</option>
+      </select>
+    </label>
+    <label>Какой цвет лучше всего описывает их отношения?
+      <select id="pairColor">
+        <option value="малиновый">малиновый</option><option value="фиолетовый">фиолетовый</option><option value="неоново-розовый">неоново-розовый</option>
+        <option value="кроваво-красный">кроваво-красный</option><option value="чёрный">чёрный</option><option value="ледяной голубой">ледяной голубой</option>
+        <option value="золотой">золотой</option><option value="серебряный">серебряный</option><option value="изумрудный">изумрудный</option>
+      </select>
+    </label>
+  </div>
+</section>
+
+<div class="song-logic-note">Музыкальный выбор не фиксирован: генератор учитывает совпадение, разнообразие музыкальных настроений и последние выпавшие песни.</div>
+<div class="actions">
+  <button class="main" id="generate">✦ СОБРАТЬ ЭСТЕТИКУ ПЕЙРИНГА</button>
+  <button class="dark" id="random10">🎲 10 СЛУЧАЙНЫХ ВАРИАНТОВ</button>
+  <button class="dark" id="exportHtml">⤓ СГЕНЕРИРОВАТЬ HTML</button>
+  <button class="light" id="clear">Очистить</button>
+  <button class="light" id="resetHistory" title="Очистить историю последних выпавших песен">Сбросить историю песен</button>
+</div>
+
+<div id="results"><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🖤 Токсичное притяжение</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Break It (Before the Dawn)</h3><div class="songmeta">Kisses and Crimes · совпадение 55.2%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">60.1%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">56.8%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">55.2%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">53.6%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Red Tag Fever</a></span><span class="score">53.6%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@bloodandroses</span><p>У Персонаж №1 абсолютно подозрительная суперсила: замечать настроение Персонаж №2 раньше всех остальных.</p></div>
+  <div class="review"><span class="handle">@feralshipper</span><p>Персонаж №2 выглядит как человек, который никогда не признается первым. И именно поэтому я жду тот самый момент, когда он/она сломается.</p></div>
+  <div class="review"><span class="handle">@bloodandroses</span><p>Я не знаю, что сильнее — химия Персонаж №1 × Персонаж №2 или то, насколько идеально им подходит Break It (Before the Dawn).</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте их запрут в одном месте на ночь. Желательно без свидетелей и без возможности сбежать от разговора.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте один из них приревнует настолько нелепо, что весь фандом одновременно закроет лицо руками.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте они наконец признают, что уже давно не умеют нормально жить друг без друга.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🌙 Slow burn</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>All's Fair (In Love and War)</h3><div class="songmeta">All's Fair · совпадение 50.9%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">54.6%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">51.6%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">51.6%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">All's Fair (In Love and War)</a></span><span class="score">50.9%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Wanted and Wild</a></span><span class="score">50.8%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №1 может сколько угодно делать вид, что Персонаж №2 его/её раздражает, но стоит Персонаж №2 исчезнуть — всё, маска слетает.</p></div>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №2 может отрицать что угодно, но вот это «мне всё равно» рядом с Персонаж №1 уже никого не обманет.</p></div>
+  <div class="review"><span class="handle">@sugarbaby</span><p>Эта песня настолько попала в Персонаж №1 × Персонаж №2, что теперь я слышу их в каждом припеве. Особенно вот это настроение: All's Fair (In Love and War).</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте они совершат ещё одну ужасно хорошую идею — только теперь официально вместе.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте один из них приревнует настолько нелепо, что весь фандом одновременно закроет лицо руками.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте один из них действительно соберётся уйти — и второй впервые не позволит ему/ей.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте кто-нибудь почти поймает их — и им придётся решить, готовы ли они больше не скрываться.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🫀 Сложная дружба</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Zankyō</h3><div class="songmeta">JADE DYNASTY: CRIMSON OATH · совпадение 48.3%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">53.9%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">52.2%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">52.0%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">51.7%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">51.1%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №1 может сколько угодно делать вид, что Персонаж №2 его/её раздражает, но стоит Персонаж №2 исчезнуть — всё, маска слетает.</p></div>
+  <div class="review"><span class="handle">@sugarbaby</span><p>№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.</p></div>
+  <div class="review"><span class="handle">@sugarbaby</span><p>Кто вообще разрешил этой песне настолько точно описать Персонаж №1 × Персонаж №2? Я пришла послушать трек и осталась страдать по пейрингу.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте их запрут в одном месте на ночь. Желательно без свидетелей и без возможности сбежать от разговора.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте они наконец признают, что уже давно не умеют нормально жить друг без друга.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🌿 Друзья → любовники</div><div class="quote">«Иногда лекарство просто оказывается самым красивым видом зависимости.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Chemical Sweetness</h3><div class="songmeta">Treats &amp; Teeth · совпадение 61.6%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">61.6%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Red Tag Fever</a></span><span class="score">59.7%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">56.4%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Obey me</a></span><span class="score">56.4%</span></div><div class="songrow"><span>5. <a href="https://samply.app/p/iT3nNIoBdfVCVAFEIIEi?si=kxOoLFkNWvbT1geBsiq756QymGj2" target="_blank" rel="noopener">Venomous ↗</a></span><span class="score">55.5%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@moonchild</span><p>Персонаж №1 может отрицать чувства сколько угодно, но рядом с Персонаж №2 всё становится подозрительно серьёзным.</p></div>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №2 рядом с Персонаж №1 слишком явно перестаёт быть тем человеком, которым привык(ла) казаться.</p></div>
+  <div class="review"><span class="handle">@feralshipper</span><p>Эта песня настолько попала в Персонаж №1 × Персонаж №2, что теперь я слышу их в каждом припеве. Особенно вот это настроение: Chemical Sweetness.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте будет тот самый ночной разговор, после которого ни один из них уже не сможет вернуться к прежнему «мы просто друзья».</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте после очередной ссоры один из них первым перестанет драться и просто скажет: «Останься».</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🥀 Обречённая любовь</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Cut. Post. Kill. Repeat</h3><div class="songmeta">Kisses and Crimes · совпадение 55.8%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">59.1%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">55.8%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">54.1%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Zankyō</a></span><span class="score">50.4%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">50.0%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@moonchild</span><p>Персонаж №1 явно знает про Персонаж №2 больше, чем готов(а) признать. Это уже не «случайная забота».</p></div>
+  <div class="review"><span class="handle">@sugarbaby</span><p>№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.</p></div>
+  <div class="review"><span class="handle">@moonchild</span><p>Вот эта песня буквально звучит как их отношения: разлукой и ни капли шансов остаться эмоционально невредимой.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте их запрут в одном месте на ночь. Желательно без свидетелей и без возможности сбежать от разговора.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🔥 Сообщники</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>All's Fair (In Love and War)</h3><div class="songmeta">All's Fair · совпадение 49.6%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">53.1%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">50.4%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">All's Fair (In Love and War)</a></span><span class="score">49.6%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">49.5%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">48.8%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@bloodandroses</span><p>Персонаж №1 может отрицать чувства сколько угодно, но рядом с Персонаж №2 всё становится подозрительно серьёзным.</p></div>
+  <div class="review"><span class="handle">@sugarcrash</span><p>Персонаж №2 выглядит как человек, который никогда не признается первым. И именно поэтому я жду тот самый момент, когда он/она сломается.</p></div>
+  <div class="review"><span class="handle">@feralshipper</span><p>Я не знаю, что сильнее — химия Персонаж №1 × Персонаж №2 или то, насколько идеально им подходит All's Fair (In Love and War).</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте они совершат ещё одну ужасно хорошую идею — только теперь официально вместе.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте будет тот самый ночной разговор, после которого ни один из них уже не сможет вернуться к прежнему «мы просто друзья».</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🌙 Slow burn</div><div class="quote">«Иногда лекарство просто оказывается самым красивым видом зависимости.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Chemical Sweetness</h3><div class="songmeta">Treats &amp; Teeth · совпадение 51.6%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">53.3%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">51.6%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">50.0%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">48.3%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">48.3%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@nightshift</span><p>Персонаж №1 явно знает про Персонаж №2 больше, чем готов(а) признать. Это уже не «случайная забота».</p></div>
+  <div class="review"><span class="handle">@velvetwitch</span><p>№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.</p></div>
+  <div class="review"><span class="handle">@feralshipper</span><p>Эта песня настолько попала в Персонаж №1 × Персонаж №2, что теперь я слышу их в каждом припеве. Особенно вот это настроение: Chemical Sweetness.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте они наконец признают, что уже давно не умеют нормально жить друг без друга.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте их запрут в одном месте на ночь. Желательно без свидетелей и без возможности сбежать от разговора.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🫀 Сложная дружба</div><div class="quote">«Некоторые истории начинаются задолго до того, как герои это понимают.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>eROARrtica</h3><div class="songmeta">Kisses and Crimes · совпадение 41.7%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">51.7%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">50.0%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">All's Fair (In Love and War)</a></span><span class="score">49.7%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">48.5%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">46.8%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №1 может сколько угодно делать вид, что Персонаж №2 его/её раздражает, но стоит Персонаж №2 исчезнуть — всё, маска слетает.</p></div>
+  <div class="review"><span class="handle">@funeralgirl</span><p>№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.</p></div>
+  <div class="review"><span class="handle">@nightshift</span><p>Вот эта песня буквально звучит как их отношения: поцелуем и ни капли шансов остаться эмоционально невредимой.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте будет тот самый ночной разговор, после которого ни один из них уже не сможет вернуться к прежнему «мы просто друзья».</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте они совершат ещё одну ужасно хорошую идею — только теперь официально вместе.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🥀 Обречённая любовь</div><div class="quote">«Некоторые ошибки хочется совершить ещё раз — уже осознанно.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Comfort Zone Killer (Want to be my regret)</h3><div class="songmeta">Velvet Six-String Coffin · совпадение 46.5%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Neon Glitch</a></span><span class="score">59.9%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Break It (Before the Dawn)</a></span><span class="score">54.5%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">53.1%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Cut. Post. Kill. Repeat</a></span><span class="score">50.5%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Wanted and Wild</a></span><span class="score">48.5%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Персонаж №1 может отрицать чувства сколько угодно, но рядом с Персонаж №2 всё становится подозрительно серьёзным.</p></div>
+  <div class="review"><span class="handle">@velvetwitch</span><p>Персонаж №2 рядом с Персонаж №1 слишком явно перестаёт быть тем человеком, которым привык(ла) казаться.</p></div>
+  <div class="review"><span class="handle">@sugarcrash</span><p>Эта песня настолько попала в Персонаж №1 × Персонаж №2, что теперь я слышу их в каждом припеве. Особенно вот это настроение: Comfort Zone Killer (Want to be my regret).</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 впервые позволит Персонаж №2 увидеть себя слабым — и Персонаж №2 не испугается, а останется.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте один из них приревнует настолько нелепо, что весь фандом одновременно закроет лицо руками.</p></div>
+ </div>
+ </div></section><section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div></div><div class="pname">Персонаж №1</div></div>
+  <div><div class="portrait"><div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div></div><div class="pname">Персонаж №2</div></div>
+  <div class="pair-title"><h2>Персонаж №1 × Персонаж №2</h2><div class="type">🌙 Slow burn</div><div class="quote">«Иногда лекарство просто оказывается самым красивым видом зависимости.»</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>Chemical Sweetness</h3><div class="songmeta">Treats &amp; Teeth · совпадение 56.7%</div><div class="player"><div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div></div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list"><div class="songrow"><span>1. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Flower Moon</a></span><span class="score">56.7%</span></div><div class="songrow"><span>2. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Chemical Sweetness</a></span><span class="score">56.7%</span></div><div class="songrow"><span>3. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Red Tag Fever</a></span><span class="score">53.4%</span></div><div class="songrow"><span>4. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Throne of Roses and Thorns (Moon Princess ED)</a></span><span class="score">50.1%</span></div><div class="songrow"><span>5. <a href="file:///C:/Users/Lessa%20Sfz/Downloads/Sugar%2520Funeral%2520%25E2%2580%2594%2520Pairing%2520Aesthetic%2520Generator%2520v8.1%2520%25E2%2580%2594%2520%25D1%2580%25D0%25B0%25D0%25B7%25D0%25BD%25D0%25BE%25D0%25BE%25D0%25B1%25D1%2580%25D0%25B0%25D0%25B7%25D0%25B8%25D0%25B5%2520%25D0%25BF%25D0%25B5%25D1%2581%25D0%25B5%25D0%25BD%20(1).html#" onclick="return false">Comfort Zone Killer (Want to be my regret)</a></span><span class="score">50.1%</span></div></div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">@sugarbaby</span><p>У Персонаж №1 абсолютно подозрительная суперсила: замечать настроение Персонаж №2 раньше всех остальных.</p></div>
+  <div class="review"><span class="handle">@moonchild</span><p>№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.</p></div>
+  <div class="review"><span class="handle">@funeralgirl</span><p>Эта песня настолько попала в Персонаж №1 × Персонаж №2, что теперь я слышу их в каждом припеве. Особенно вот это настроение: Chemical Sweetness.</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  <div class="wish special"><span class="handle">@nightshift</span><p>А давайте Персонаж №1 и Персонаж №2 наконец перестанут тормозить и сделают то, что весь фандом уже понял.</p></div><div class="wish "><span class="handle">@feralshipper</span><p>А давайте они наконец признают, что уже давно не умеют нормально жить друг без друга.</p></div><div class="wish "><span class="handle">@velvetwitch</span><p>А давайте один из них приревнует настолько нелепо, что весь фандом одновременно закроет лицо руками.</p></div><div class="wish "><span class="handle">@sugarcrash</span><p>А давайте один из них действительно соберётся уйти — и второй впервые не позволит ему/ей.</p></div>
+ </div>
+ </div></section></div>
+</div>
+
 <script>
-/* Samply catalogue is loaded from data/samply-links.json so every selected song can use its real page/embed URL. */
-const SAMPlyBase='data/samply-links.json';
-let SAMPlyLinks={};
-async function loadSamplyLinks(){
+const SONGS=[{"title":"Electric Rosary","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["romance","emotion"]},{"title":"Comfort Zone Killer (Want to be my regret)","album":"Velvet Six-String Coffin","v":[8,10,9,10,2,8,9],"tags":["obsession","danger","temptation","toxic"]},{"title":"Velvet Six-String Coffin","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["power","mystery","seduction"]},{"title":"Nocturnal Etiquette","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["power","mystery","seduction"]},{"title":"Velour Panther","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["romance","emotion"]},{"title":"My Crimson Curl","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["romance","emotion"]},{"title":"Neon Fever Dream","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["rebellion","doom","night","intensity"]},{"title":"Harbor of the Damned","album":"Velvet Six-String Coffin","v":[8,5,4,3,10,8,2],"tags":["healing","comfort","devotion","protection"]},{"title":"Wanted and Wild","album":"Velvet Six-String Coffin","v":[8,10,7,8,5,4,10],"tags":["crime","play","rebellion","chaos"]},{"title":"My citadel","album":"Velvet Six-String Coffin","v":[7,8,6,8,4,5,7],"tags":["healing","comfort","devotion","protection"]},{"title":"Spank-o-Tronic (Bonus)","album":"Velvet Six-String Coffin","v":[7,10,6,8,3,3,10],"tags":["crime","play","rebellion","chaos"]},{"title":"Baby, I'm Your Halloween","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["romance","emotion"]},{"title":"The Fluffiest Supreme","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["romance","emotion"]},{"title":"The Wild Toybox","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["crime","play","rebellion","chaos"]},{"title":"Chemical Sweetness","album":"Treats & Teeth","v":[9,10,10,8,4,7,8],"tags":["obsession","danger","temptation","toxic"]},{"title":"Venomous","album":"Treats & Teeth","v":[7,10,8,10,3,6,9],"tags":["obsession","danger","temptation","toxic"]},{"title":"Handmade Guillotine","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["obsession","danger","temptation","toxic"]},{"title":"Odaxelagnia","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["obsession","danger","temptation","toxic"]},{"title":"Unwrapped","album":"Treats & Teeth","v":[8,7,5,5,9,7,4],"tags":["romance","emotion"]},{"title":"Red Tag Fever","album":"Treats & Teeth","v":[8,10,9,10,3,7,9],"tags":["obsession","danger","temptation","toxic"]},{"title":"Harvest Moon Feast (or. ver)","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["romance","emotion"]},{"title":"Dr. Rx","album":"Treats & Teeth","v":[7,8,7,8,4,5,8],"tags":["romance","emotion"]},{"title":"Masquerade","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["power","mystery","seduction"]},{"title":"Witch Boy","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["power","mystery","seduction"]},{"title":"Midnight Sugar Raid","album":"The Masquerade","v":[8,9,6,9,3,4,10],"tags":["crime","play","rebellion","chaos"]},{"title":"Bloody Cherry","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["obsession","danger","temptation","toxic"]},{"title":"Neon Glitch","album":"The Masquerade","v":[8,10,9,7,3,10,9],"tags":["rebellion","doom","night","intensity"]},{"title":"Vertigo","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["romance","emotion"]},{"title":"Lullaby for the Wicked","album":"The Masquerade","v":[8,6,6,5,10,8,4],"tags":["healing","comfort","devotion","protection"]},{"title":"Obey me","album":"The Masquerade","v":[7,10,9,10,2,7,9],"tags":["obsession","danger","temptation","toxic"]},{"title":"Run for Your Life (From the Sun) or.ver","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["rebellion","doom","night","intensity"]},{"title":"Wish","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["romance","emotion"]},{"title":"Crown Me, Keep Me","album":"The Masquerade","v":[7,8,7,7,5,7,7],"tags":["power","mystery","seduction"]},{"title":"Valenticide (Be My, Be My, Be My)","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["romance","emotion"]},{"title":"Checkmate","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["power","mystery","seduction"]},{"title":"Soldier of love","album":"All's Fair","v":[9,6,4,3,9,5,2],"tags":["healing","comfort","devotion","protection"]},{"title":"My Wonderland","album":"All's Fair","v":[8,7,5,6,6,4,9],"tags":["crime","play","rebellion","chaos"]},{"title":"Flower Moon","album":"All's Fair","v":[9,8,8,5,9,7,5],"tags":["romance","tenderness","intimacy"]},{"title":"My own Frankenstein","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["romance","emotion"]},{"title":"Nightwave Radio","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["romance","emotion"]},{"title":"Lights Out","album":"All's Fair","v":[7,9,8,9,3,6,8],"tags":["power","mystery","seduction"]},{"title":"Slow Burn, Baby","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["romance","tenderness","intimacy"]},{"title":"All's Fair (In Love and War)","album":"All's Fair","v":[8,9,8,9,4,7,9],"tags":["romance","emotion"]},{"title":"Lucky","album":"All's Fair","v":[8,7,6,6,7,5,4],"tags":["romance","emotion"]},{"title":"Kiss, Marry, Kill","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["crime","play","rebellion","chaos"]},{"title":"One Shot","album":"Kisses and Crimes","v":[7,9,6,9,3,7,7],"tags":["rebellion","doom","night","intensity"]},{"title":"Killer Comfort","album":"Kisses and Crimes","v":[8,9,7,7,7,6,8],"tags":["romance","emotion"]},{"title":"Double-O (License to Thrill)","album":"Kisses and Crimes","v":[7,9,5,9,4,3,9],"tags":["crime","play","rebellion","chaos"]},{"title":"eROARrtica","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["crime","play","rebellion","chaos"]},{"title":"Cuff me","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["crime","play","rebellion","chaos"]},{"title":"Sillage","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["romance","emotion"]},{"title":"Spoilers! Alert!","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["crime","play","rebellion","chaos"]},{"title":"Break It (Before the Dawn)","album":"Kisses and Crimes","v":[7,9,7,8,4,9,9],"tags":["rebellion","doom","night","intensity"]},{"title":"Fixation","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["obsession","danger","temptation","toxic"]},{"title":"Crowns on a Dashboard","album":"Kisses and Crimes","v":[7,9,7,8,4,6,8],"tags":["romance","emotion"]},{"title":"Cut. Post. Kill. Repeat","album":"Kisses and Crimes","v":[7,10,9,10,2,8,10],"tags":["rebellion","doom","night","intensity"]},{"title":"Cold December Thirst","album":"Longest Night","v":[7,5,4,3,9,4,2],"tags":["romance","emotion"]},{"title":"Mistletoe Wire","album":"Longest Night","v":[7,5,4,3,9,4,2],"tags":["romance","tenderness","intimacy"]},{"title":"By the Firelight","album":"Longest Night","v":[8,5,3,2,10,5,2],"tags":["healing","comfort","devotion","protection","romance","tenderness","intimacy"]},{"title":"Dark Yule Dance","album":"Longest Night","v":[7,5,4,3,9,4,2],"tags":["romance","emotion"]},{"title":"Secret Satan Shuffle (Bonus)","album":"Longest Night","v":[7,5,4,3,9,4,2],"tags":["romance","emotion"]},{"title":"Throne of Roses and Thorns (Moon Princess ED)","album":"Moon Princess: Blood Rose Waltz","v":[9,7,7,6,9,9,4],"tags":["romance","tenderness","intimacy"]},{"title":"Zankyō","album":"JADE DYNASTY: CRIMSON OATH","v":[8,7,7,6,8,9,4],"tags":["rebellion","doom","night","intensity"]},{"title":"After the Lanterns","album":"JADE DYNASTY: CRIMSON OATH","v":[8,7,5,4,9,4,2],"tags":["rebellion","doom","night","intensity"]},{"title":"Ink and Blade (Shuānglín OST)","album":"JADE DYNASTY: CRIMSON OATH","v":[8,7,6,6,7,8,3],"tags":["romance","emotion"]},{"title":"The Beautiful Debt","album":"JADE DYNASTY: CRIMSON OATH","v":[8,7,7,6,7,8,4],"tags":["healing","comfort","devotion","protection"]},{"title":"Golden Vice","album":"JADE DYNASTY: CRIMSON OATH","v":[7,9,8,9,3,6,8],"tags":["obsession","danger","temptation","toxic"]},{"title":"Ignite the Night","album":"Singles","v":[7,8,6,6,3,10,9],"tags":["rebellion","night","intensity"]},{"title":"New Skin","album":"Singles","v":[8,8,7,6,6,7,7],"tags":["romance","rebirth","emotion"]}];
+const SAMPly={
+  "Venomous":"https://samply.app/embed/iT3nNIoBdfVCVAFEIIEi?si=kxOoLFkNWvbT1geBsiq756QymGj2"
+};
+const SONG_URLS={
+  "Venomous":"https://samply.app/p/iT3nNIoBdfVCVAFEIIEi?si=kxOoLFkNWvbT1geBsiq756QymGj2"
+};
+const LABELS={
+ "enemies-to-lovers":"⚔️ Враги → любовники","friends-to-lovers":"🌿 Друзья → любовники",
+ "forbidden-attraction":"🔒 Запретная связь","slow-burn":"🌙 Slow burn","toxic-attraction":"🖤 Токсичное притяжение",
+ "mutual-obsession":"🩸 Взаимная одержимость","opposites":"☯️ Противоположности","partners-in-crime":"🔥 Сообщники",
+ "doomed-romance":"🥀 Обречённая любовь","protective-romance":"🛡️ Защитник × тот, кого нельзя потерять",
+ "hurt-comfort":"🤍 Hurt / comfort","secret-relationship":"🌫️ Тайные отношения","power-dynamic":"♟️ Власть × власть",
+ "complicated-friendship":"🫀 Сложная дружба","none":"💫 Они сами ещё не поняли, что встречаются"
+};
+const BOOST={
+ "enemies-to-lovers":{danger:2,passion:2,obsession:1,chaos:1},
+ "friends-to-lovers":{tenderness:2,romance:2},
+ "forbidden-attraction":{romance:2,danger:2,tragedy:1,obsession:1},
+ "slow-burn":{tenderness:2,romance:2,tragedy:1},
+ "toxic-attraction":{obsession:3,danger:2,passion:2,chaos:1},
+ "mutual-obsession":{obsession:4,passion:2,danger:2},
+ "opposites":{chaos:2,romance:1},
+ "partners-in-crime":{chaos:3,danger:2,passion:2},
+ "doomed-romance":{tragedy:4,romance:2,obsession:1},
+ "protective-romance":{tenderness:3,danger:1,romance:2},
+ "hurt-comfort":{tenderness:4,tragedy:1,danger:-1},
+ "secret-relationship":{danger:2,romance:2,tragedy:2},
+ "power-dynamic":{danger:2,passion:2,obsession:2},
+ "complicated-friendship":{tenderness:1,tragedy:1}
+};
+const MATRIX=["делает первый шаг","провоцирует","ревнует","защищает","уступает","врёт ради другого","попадает в неприятности","первым мирится","скрывает свои чувства","готов пойти на риск","сильнее боится потери","делает вид, что ему всё равно"];
+const MATRIX_EFFECT=[
+ {passion:1.1},{chaos:.7,danger:.5},{obsession:1.0},{tenderness:1.1,danger:.3},{tenderness:.4},{danger:.4,romance:.4},
+ {chaos:1.0,danger:.4},{tenderness:.7,romance:.4},{tragedy:.7,obsession:.4},{danger:.8,passion:.5},{tragedy:.8,obsession:.3},{obsession:.5,tragedy:.3}
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const state={};
+function choices(target){return [...document.querySelectorAll('.choice-buttons[data-target="'+target+'"] .choice.selected')].map(b=>b.dataset.value)}
+function setupChoices(){
+ document.querySelectorAll(".choice-buttons").forEach(group=>{
+   const target=group.dataset.target, limit=Number(group.dataset.limit||1);
+   if(!state[target]) state[target]=[];
+   group.querySelectorAll(".choice").forEach(btn=>{
+     btn.addEventListener("click",()=>{
+       const val=btn.dataset.value, arr=state[target]||[];
+       if(limit===1){
+         group.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
+         state[target]=[val]; btn.classList.add("selected");
+       } else {
+         const idx=arr.indexOf(val);
+         if(idx>=0){arr.splice(idx,1);btn.classList.remove("selected");}
+         else if(arr.length<limit){arr.push(val);btn.classList.add("selected");}
+       }
+     });
+   });
+ });
+}
+setupChoices();
+
+$("matrix").innerHTML=MATRIX.map((x,i)=>`<div class="mrow"><span>${x}</span><select data-m="${i}"><option value="1">№1</option><option value="2">№2</option><option value="both">оба</option><option value="none">никто</option></select></div>`).join("");
+
+function matrixVals(){
+ return [...document.querySelectorAll("#matrix select")].map(s=>s.value);
+}
+function add(p,k,v){p[k]=Math.max(0,Math.min(10,p[k]+v))}
+function collect(){
+ const p1=$("name1").value.trim()||"Персонаж №1",p2=$("name2").value.trim()||"Персонаж №2";
+ const dyn=state.dynamics||[],bond=state.bond||[],scenes=state.scenes||[],feel=state.feel||[];
+ const p={romance:5,passion:5,obsession:5,danger:5,tenderness:5,tragedy:5,chaos:5};
+ dyn.forEach(d=>Object.entries(BOOST[d]||{}).forEach(([k,v])=>add(p,k,v)));
+ bond.forEach(b=>{
+   const s=b.toLowerCase();
+   if(s.includes("довер"))add(p,"tenderness",1.2);
+   if(s.includes("физич"))add(p,"passion",1.4);
+   if(s.includes("завис"))add(p,"obsession",1.3);
+   if(s.includes("интел"))add(p,"romance",.8);
+   if(s.includes("тайн")||s.includes("опас"))add(p,"danger",1);
+   if(s.includes("травм"))add(p,"tragedy",1);
+   if(s.includes("спас"))add(p,"tenderness",1.5);
+   if(s.includes("отпуст"))add(p,"obsession",1.4);
+ });
+ scenes.forEach(s=>{
+   if(s==="ревность"||s==="ревность с отрицанием")add(p,"obsession",.9);
+   if(s==="уход за раненым"||s==="один защищает другого"||s==="один впервые показывает слабость")add(p,"tenderness",1.1);
+   if(s==="совместное преступление")add(p,"chaos",1.2);
+   if(s==="ссора → примирение"||s==="поцелуй после ссоры")add(p,"passion",.9);
+   if(s==="пусть наконец перестанут тормозить"||s==="почти-поцелуй")add(p,"passion",.8);
+   if(s==="встреча после разлуки")add(p,"tragedy",.7);
+ });
+ const fmap={"нежность":"tenderness","страсть":"passion","тоска":"tragedy","опасность":"danger","ревность":"obsession","надежда":"romance","одержимость":"obsession","свобода":"chaos","веселье":"chaos","безумие":"chaos","отчаяние":"tragedy","чувство дома":"tenderness","предчувствие катастрофы":"danger","желание":"passion","сожаление":"tragedy","триумф":"romance"};
+ feel.forEach(f=>{if(fmap[f])add(p,fmap[f],1.25)});
+ const mv=matrixVals(); mv.forEach((who,i)=>{if(who!=="none") Object.entries(MATRIX_EFFECT[i]).forEach(([k,v])=>add(p,k,v*(who==="both"?1.25:1)));});
+
+ // Контекст из версии 7.2 — небольшой, но реальный вклад в музыкальный профиль.
+ const contextBoost={
+   obstacle:{
+     "прошлое":{tragedy:.7},"тайна":{danger:.6,obsession:.4},
+     "разные стороны конфликта":{danger:1,passion:.4},"страх близости":{tragedy:.6,obsession:.5},
+     "обязанности":{tragedy:.5},"разница в статусе":{danger:.4,tragedy:.4},
+     "опасность":{danger:1},"кто-то третий":{obsession:.8},
+     "они сами":{chaos:.8,obsession:.4},"ничего — они просто всё усложняют":{chaos:1}
+   },
+   fearResponse:{
+     "сближаются":{tenderness:.8,romance:.5},"отдаляются":{tragedy:.7},
+     "шутят":{chaos:.6},"ссорятся":{passion:.5,chaos:.5},
+     "молчат":{tragedy:.5,obsession:.3},"защищают друг друга":{tenderness:1},
+     "делают вид, что всё нормально":{obsession:.4,tragedy:.3},"рискуют ещё сильнее":{danger:.8,chaos:.4}
+   },
+   attraction:{
+     "мягкое":{tenderness:.7},"наэлектризованное":{passion:.8},"опасное":{danger:.8,passion:.4},
+     "навязчивое":{obsession:.9},"медленно нарастающее":{romance:.5,tenderness:.4},
+     "взрывное":{passion:1},"почти болезненное":{obsession:.7,tragedy:.5},"необъяснимое":{mystery:.2,obsession:.5}
+   },
+   noRomance:{
+     "дружба":{tenderness:.7},"доверие":{tenderness:.8},"взаимная зависимость":{obsession:.8},
+     "соперничество":{passion:.4,chaos:.4},"ненависть":{danger:.7,passion:.5},
+     "общая тайна":{danger:.6,obsession:.3},"партнёрство":{romance:.3,chaos:.3},
+     "ничего — их держит только притяжение":{passion:1,obsession:.6}
+   }
+ };
+ Object.entries(contextBoost).forEach(([field,map])=>{
+   Object.entries(map[p[field]]||{}).forEach(([k,v])=>{ if(p[k]!==undefined) add(p,k,v); });
+ });
+
+ const extraContext={
+   obstacle:{
+     "расстояние":{tragedy:.6,romance:.3},"моральные принципы":{tragedy:.5,danger:.3},
+     "долг":{tragedy:.6},"война / конфликт":{danger:.8,tragedy:.5},
+     "секрет одного из них":{danger:.5,obsession:.6},"взаимная ненависть":{danger:.7,passion:.6},
+     "обстоятельства":{tragedy:.4},"они слишком похожи":{obsession:.3,chaos:.4},
+     "они слишком разные":{chaos:.4,romance:.3}
+   },
+   fearResponse:{
+     "исчезают на время":{tragedy:.6,obsession:.3},"начинают контролировать всё вокруг":{obsession:.5,danger:.4},
+     "признаются друг другу в правде":{romance:.8,tenderness:.5},"цепляются друг за друга":{tenderness:.7,obsession:.6},
+     "делают вид, что им всё равно":{obsession:.5,tragedy:.3},"переходят в наступление":{danger:.7,passion:.4}
+   },
+   attraction:{
+     "медленное":{romance:.4,tenderness:.5},"запретное":{danger:.7,passion:.6,tragedy:.3},
+     "игровое":{chaos:.6,passion:.4},"разрушительное":{danger:.8,obsession:.6},
+     "неизбежное":{obsession:.7,tragedy:.3},"хрупкое":{tenderness:.6,tragedy:.4},
+     "тёплое":{tenderness:.8,romance:.5},"холодное":{danger:.4,tragedy:.5}
+   },
+   noRomance:{
+     "взаимное уважение":{romance:.4,tenderness:.5},"привычка":{tenderness:.5,tragedy:.2},
+     "страх":{danger:.5,tragedy:.4},"общая цель":{romance:.3,chaos:.3},
+     "ничего — всё держится на выборе":{romance:.6,tenderness:.4},"семья":{tenderness:.9,romance:.4}
+   }
+ };
+ Object.entries(extraContext).forEach(([field,map])=>{
+   Object.entries(map[p[field]]||{}).forEach(([k,v])=>{ if(p[k]!==undefined) add(p,k,v); });
+ });
+ if(p.firstStep==="1"||p.firstStep==="2") add(p,"passion",.35);
+ if(p.firstStep==="оба") add(p,"romance",.5);
+ if(p.firstStep==="никто — всё произошло само") add(p,"chaos",.45);
+
+ const admissionText=[p.admit1,p.admit2].join(" ").toLowerCase();
+ if(/влюб|думает о|скучает|простил|слабым местом/.test(admissionText)) add(p,"romance",.45);
+ if(/ревн|потеря|без №|слабым местом/.test(admissionText)) add(p,"obsession",.45);
+ if(/правил|нарушить/.test(admissionText)) add(p,"danger",.4);
+ if(/безопасност/.test(admissionText)) add(p,"tenderness",.5);
+ if(/слабост/.test(admissionText)) add(p,"tragedy",.25);
+
+ const edgeContext={
+   "угроза жизни одного из них":{danger:.9,tenderness:.4},
+   "потеря одного из них":{tragedy:.9,obsession:.6},
+   "ревность, которую больше невозможно скрыть":{obsession:.8,passion:.5},
+   "случайное признание":{romance:.8,passion:.3},
+   "поцелуй":{passion:.9,romance:.5},
+   "ночной разговор по душам":{tenderness:.7,romance:.6},
+   "момент, когда один впервые покажет слабость":{tenderness:.8,tragedy:.3},
+   "необходимость выбрать друг друга":{romance:.7,devotion:.2},
+   "ссора, после которой уже нельзя сделать вид, что всё нормально":{passion:.6,chaos:.4},
+   "нарушение главного запрета":{danger:.8,passion:.5},
+   "кто-то из них действительно уйдёт":{tragedy:.8,obsession:.6},
+   "ничего — они сами всё оттянут до последнего":{tragedy:.4,chaos:.4}
+ };
+ Object.entries(edgeContext[p.edge]||{}).forEach(([k,v])=>{if(p[k]!==undefined)add(p,k,v);});
+
+ const freeText=[p.firstThought1,p.firstThought2,p.loss1,p.loss2,p.forgive1,p.forgive2,p.hiddenTruth].join(" ").toLowerCase();
+ const textSignals=[
+   [/люб(ов|ви)|нежн|тепл|дом|забот/, "tenderness", .35],
+   [/страст|желани|поцел|тянет|притяж/, "passion", .35],
+   [/одерж|завис|не отпущ|не могу без|потеря/, "obsession", .4],
+   [/опас|риск|убь|угроз|страх/, "danger", .35],
+   [/тос|боль|утрат|один|разлук|прошл/, "tragedy", .35],
+   [/шут|смеш|безум|хаос|авантюр/, "chaos", .3],
+   [/любов|чувств|довер|понима/, "romance", .3]
+ ];
+ textSignals.forEach(([re,k,v])=>{if(re.test(freeText)) add(p,k,v);});
+
+ if(state.kiss?.[0] && state.kiss[0]!=="none")add(p,"passion",.7);
+ if(state.confess?.[0] && state.confess[0]!=="none")add(p,"romance",.8);
+ if(state.jealous?.[0] && state.jealous[0]!=="none")add(p,"obsession",.7);
+ if(state.stay?.[0] && state.stay[0]!=="none")add(p,"tenderness",.6);
+ return {
+   p1,p2,p,dyn,bond,scenes,feel,
+   meet:state.meet?.[0]||"",attention:state.attention?.[0]||"",serious:state.serious?.[0]||"",
+   firstStep:$("firstStep").value,firstThought1:$("firstThought1").value.trim(),firstThought2:$("firstThought2").value.trim(),
+   admit1:$("admit1").value,admit2:$("admit2").value,
+   obstacle:$("obstacle").value,fearResponse:$("fearResponse").value,
+   attraction:$("attraction").value,noRomance:$("noRomance").value,
+   loss1:$("loss1").value.trim(),loss2:$("loss2").value.trim(),
+   forgive1:$("forgive1").value.trim(),forgive2:$("forgive2").value.trim(),
+   edge:$("edge").value,hiddenTruth:$("hiddenTruth").value.trim(),
+   kiss:state.kiss?.[0]||"",confess:state.confess?.[0]||"",friends:state.friends?.[0]||"",
+   jealous:state.jealous?.[0]||"",night:state.night?.[0]||"",stay:state.stay?.[0]||"",
+   mood:$("mood").value,tempo:$("tempo").value,songEnding:$("songEnding").value,pairColor:$("pairColor").value,
+   pairName:$("pairName").value.trim(),
+   photo1:$("photo1").value.trim(),photo2:$("photo2").value.trim()
+ };
+}
+function songScore(s,p){
+ const ks=["romance","passion","obsession","danger","tenderness","tragedy","chaos"];
+ let d=0; s.v.forEach((v,i)=>d+=Math.abs(v-p.p[ks[i]]));
+ const base=70-d*1.65;
+ let bonus=0;
+ const tags=new Set(s.tags);
+ const wanted=[...p.feel];
+ const tagMap={
+  "нежность":["tenderness","healing","comfort"],"страсть":["romance","intensity","seduction"],
+  "тоска":["doom","tragedy","emotion"],"опасность":["danger","toxic","intensity"],
+  "ревность":["obsession","toxic"],"надежда":["romance","devotion"],"одержимость":["obsession","toxic"],
+  "свобода":["rebellion","chaos","crime"],"веселье":["play","chaos"],"безумие":["chaos","intensity"],
+  "отчаяние":["doom","tragedy"],"чувство дома":["comfort","devotion","tenderness"],
+  "предчувствие катастрофы":["doom","danger"],"желание":["passion","seduction"],"сожаление":["doom","emotion"],"триумф":["romance","rebellion"]
+ };
+ wanted.forEach(f=>(tagMap[f]||[]).forEach(t=>{if(tags.has(t))bonus+=1.6}));
+ if(p.mood==="неоновая" && (tags.has("night")||tags.has("intensity")||tags.has("rebellion")))bonus+=2.2;
+ if(p.mood==="готическая" && (tags.has("doom")||tags.has("toxic")||tags.has("mystery")))bonus+=2.2;
+ if(p.mood==="грязная / рок-н-ролльная" && (tags.has("rebellion")||tags.has("crime")||tags.has("intensity")))bonus+=2.2;
+ if(p.tempo==="медленный" && tags.has("tenderness"))bonus+=1.2;
+ if(p.tempo==="стремительный" && (tags.has("intensity")||tags.has("chaos")))bonus+=1.2;
+ const endingTags={
+  "поцелуем":["romance","passion","seduction"],"признанием":["romance","devotion","emotion"],
+  "надеждой":["romance","devotion"],"счастливым финалом":["romance","comfort"],
+  "горько-сладким послевкусием":["emotion","doom"],"разлукой":["doom","tragedy"],
+  "катастрофой":["doom","danger","intensity"],"ощущением, что всё только начинается":["romance","rebellion","hope"]
+ };
+ (endingTags[p.songEnding]||[]).forEach(t=>{if(tags.has(t))bonus+=1.35});
+ const colorTags={
+  "малиновый":["passion","seduction"],"фиолетовый":["mystery","obsession"],"неоново-розовый":["night","intensity"],
+  "кроваво-красный":["danger","toxic"],"чёрный":["doom","mystery"],"ледяной голубой":["emotion","healing"],
+  "золотой":["devotion","triumph"],"серебряный":["mystery","romance"],"изумрудный":["healing","mystery"]
+ };
+ (colorTags[p.pairColor]||[]).forEach(t=>{if(tags.has(t))bonus+=1.0});
+ return Math.max(0,Math.min(100,base+bonus));
+}
+function typeFor(p){return LABELS[p.dyn[0]||"none"]||LABELS.none}
+const QUOTES={
+ "Venomous":"«Ядовитые вещи почему-то особенно трудно отпустить.»",
+ "Chemical Sweetness":"«Иногда лекарство просто оказывается самым красивым видом зависимости.»",
+ "Comfort Zone Killer (Want to be my regret)":"«Некоторые ошибки хочется совершить ещё раз — уже осознанно.»",
+ "Wanted and Wild":"«Им обоим нужен был выход. Вместо него они нашли друг друга.»",
+ "Flower Moon":"«Некоторые чувства расцветают именно там, где всё должно было закончиться.»",
+ "Harbor of the Damned":"«Даже у обречённых есть место, где можно наконец выдохнуть.»",
+ "Lullaby for the Wicked":"«Самые опасные руки иногда оказываются единственными, в которых хочется уснуть.»",
+ "Neon Glitch":"«Город мигает, пока они делают вид, что между ними ничего не происходит.»",
+ "Slow Burn, Baby":"«Самое жестокое пламя — то, которому не дают загореться.»",
+ "The Beautiful Debt":"«Некоторые долги не выплачивают — ими просто остаются друг другу.»"
+};
+const handles=["@moonchild","@bloodandroses","@sugarbaby","@nightshift","@feralshipper","@velvetwitch","@sugarcrash","@funeralgirl"];
+
+function subjectFor(who,p){return who==="1"?p.p1:who==="2"?p.p2:"они"}
+function reviewTexts(p,top){
+ const a=p.p1,b=p.p2;
+ const r1=[
+  `${a} может сколько угодно делать вид, что ${b} его/её раздражает, но стоит ${b} исчезнуть — всё, маска слетает.`,
+  `${a} явно знает про ${b} больше, чем готов(а) признать. Это уже не «случайная забота».`,
+  `У ${a} абсолютно подозрительная суперсила: замечать настроение ${b} раньше всех остальных.`,
+  p.firstThought1?`Первое впечатление «${p.firstThought1}» было явно ложной тревогой, потому что теперь ${a} слишком много чувствует рядом с ${b}.`:
+    `Мне особенно нравится, что ${a} явно воспринимал(а) ${b} совсем иначе в начале этой истории.`,
+  p.loss1?`После того, как ${a} боится лишиться ${p.loss1}, я вообще не верю, что он/она способен(на) относиться к ${b} как к чему-то временному.`:
+    `${a} может отрицать чувства сколько угодно, но рядом с ${b} всё становится подозрительно серьёзным.`
+ ];
+ const r2=[
+  `${b} выглядит как человек, который никогда не признается первым. И именно поэтому я жду тот самый момент, когда он/она сломается.`,
+  `Мне нравится, что ${b} рядом с ${a} становится совсем другим человеком — даже если оба делают вид, что этого не происходит.`,
+  `${b} может отрицать что угодно, но вот это «мне всё равно» рядом с ${a} уже никого не обманет.`,
+  p.firstThought2?`Ирония в том, что первое впечатление №2 «${p.firstThought2}» теперь звучит как начало очень плохой идеи. Я за.`:
+    `№2 явно не рассчитывал(а), что эта история зайдёт настолько далеко.`,
+  p.loss2?`После признания про «${p.loss2}» я теперь смотрю на каждую сцену с ${a} совсем иначе.`:
+    `${b} рядом с ${a} слишком явно перестаёт быть тем человеком, которым привык(ла) казаться.`
+ ];
+ const r3=[
+  `Эта песня настолько попала в ${a} × ${b}, что теперь я слышу их в каждом припеве. Особенно вот это настроение: ${top.title}.`,
+  `Кто вообще разрешил этой песне настолько точно описать ${a} × ${b}? Я пришла послушать трек и осталась страдать по пейрингу.`,
+  `Я не знаю, что сильнее — химия ${a} × ${b} или то, насколько идеально им подходит ${top.title}.`,
+  `Вот эта песня буквально звучит как их отношения: ${p.songEnding||"финал"} и ни капли шансов остаться эмоционально невредимой.`
+ ];
+ return [r1[Math.floor(Math.random()*r1.length)],r2[Math.floor(Math.random()*r2.length)],r3[Math.floor(Math.random()*r3.length)]];
+}
+function wishPool(p,type){
+ const a=p.p1,b=p.p2,sc=p.scenes;
+ const pool=[];
+ if(sc.includes("пусть наконец перестанут тормозить")||p.dyn.includes("slow-burn")||p.dyn.includes("friends-to-lovers"))
+   pool.push(`А давайте ${a} и ${b} наконец перестанут тормозить и сделают то, что весь фандом уже понял.`);
+ if(p.dyn.includes("hurt-comfort")||sc.includes("уход за раненым")||sc.includes("один защищает другого"))
+   pool.push(`А давайте ${a} впервые позволит ${b} увидеть себя слабым — и ${b} не испугается, а останется.`);
+ if(p.dyn.includes("protective-romance"))
+   pool.push(`А давайте в тот момент, когда ${b} окажется в опасности, ${a} забудет обо всех правилах и просто пойдёт за ним/ней.`);
+ if(p.dyn.includes("partners-in-crime"))
+   pool.push(`А давайте они совершат ещё одну ужасно хорошую идею — только теперь официально вместе.`);
+ if(p.dyn.includes("doomed-romance")||p.dyn.includes("forbidden-attraction"))
+   pool.push(`А давайте им дадут хотя бы одну ночь без правил, прежде чем судьба снова напомнит, почему им нельзя быть вместе.`);
+ if(p.dyn.includes("toxic-attraction")||p.dyn.includes("mutual-obsession"))
+   pool.push(`А давайте они наконец признают, что уже давно не умеют нормально жить друг без друга.`);
+ if(p.dyn.includes("enemies-to-lovers"))
+   pool.push(`А давайте после очередной ссоры один из них первым перестанет драться и просто скажет: «Останься».`);
+ if(p.dyn.includes("secret-relationship"))
+   pool.push(`А давайте кто-нибудь почти поймает их — и им придётся решить, готовы ли они больше не скрываться.`);
+ if(sc.includes("ночной разговор"))
+   pool.push(`А давайте будет тот самый ночной разговор, после которого ни один из них уже не сможет вернуться к прежнему «мы просто друзья».`);
+ if(sc.includes("вынужденная близость"))
+   pool.push(`А давайте их запрут в одном месте на ночь. Желательно без свидетелей и без возможности сбежать от разговора.`);
+ if(sc.includes("ревность")||p.jealous==="1"||p.jealous==="2")
+   pool.push(`А давайте один из них приревнует настолько нелепо, что весь фандом одновременно закроет лицо руками.`);
+ if(sc.includes("«останься")||p.stay!=="none")
+   pool.push(`А давайте один из них действительно соберётся уйти — и второй впервые не позволит ему/ей.`);
+ if(!pool.length) pool.push(`А давайте они наконец перестанут делать вид, что между ними ничего нет.`);
+ // Добавляем несколько универсальных вариантов, но всегда оставляем один динамический.
+ const generic=[
+  `А давайте ${a} случайно увидит ${b} действительно испуганным — и впервые поймёт, насколько сильно тот/та переживает.`,
+  `А давайте после очередной ссоры один из них всё-таки скажет: «Останься».`,
+  `А давайте им придётся провести ночь в одном доме и утром оба будут делать вид, что ничего не произошло.`,
+  `А давайте один из них впервые услышит от второго правду, которую тот скрывал слишком долго.`
+ ];
+ while(pool.length<4){const x=generic[Math.floor(Math.random()*generic.length)];if(!pool.includes(x))pool.push(x);}
+ return pool.sort(()=>Math.random()-.5).slice(0,4);
+}
+function playerFor(song){
+ if(SAMPly[song.title]) return `<iframe src="${SAMPly[song.title]}" frameborder="0" allowtransparency="true" loading="lazy" title="Samply — ${esc(song.title)}"></iframe><a class="open-song" href="${SONG_URLS[song.title]}" target="_blank" rel="noopener">Открыть песню на Samply ↗</a>`;
+ return `<div class="notice">Для этой песни пока не подключён Samply-плеер. Название останется в TOP-5; URL можно добавить в каталог без изменения механики генератора.</div>`;
+}
+const SONG_FAMILY_RULES=[
+  {name:"toxic", tags:["obsession","toxic","danger","temptation"]},
+  {name:"comfort", tags:["healing","comfort","devotion","protection"]},
+  {name:"neon-chaos", tags:["rebellion","chaos","intensity","night"]},
+  {name:"crime-play", tags:["crime","play","chaos"]},
+  {name:"gothic-seduction", tags:["power","mystery","seduction"]},
+  {name:"tender-romance", tags:["romance","tenderness","intimacy"]},
+  {name:"emotional-romance", tags:["romance","emotion"]}
+];
+function songFamily(song){
+  const tags=new Set(song.tags||[]);
+  for(const rule of SONG_FAMILY_RULES){if(rule.tags.some(t=>tags.has(t))) return rule.name;}
+  return "other";
+}
+const SONG_HISTORY_KEY="sugarFuneralPairingSongHistory_v81";
+function getSongHistory(){
+  try{const x=JSON.parse(localStorage.getItem(SONG_HISTORY_KEY)||"[]");return Array.isArray(x)?x:[];}catch(e){return [];}
+}
+function rememberSong(song){
   try{
-    const r=await fetch(SAMPlyBase,{cache:'no-store'});
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const data=await r.json();
-    SAMPlyLinks=data.tracks||data.songs||data||{};
-    return true;
-  }catch(e){console.warn('Samply catalogue unavailable:',e); return false;}
+    const h=getSongHistory().filter(x=>x.title!==song.title);
+    h.unshift({title:song.title,family:songFamily(song)});
+    localStorage.setItem(SONG_HISTORY_KEY,JSON.stringify(h.slice(0,12)));
+  }catch(e){}
 }
-function normalizeSongKey(s){return String(s||'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-zа-яё0-9]+/gi,' ').trim();}
-function findSamplyTrack(song){
-  const key=normalizeSongKey(song);
-  if(!key) return null;
-  const entries=Object.entries(SAMPlyLinks);
-  for(const [k,v] of entries){
-    const name=normalizeSongKey(v?.title||v?.name||k);
-    if(name===key || name.includes(key) || key.includes(name)) return v;
-  }
-  return null;
+function pickSong(ranked){
+  if(!ranked.length) return null;
+  const history=getSongHistory();
+  const recent=new Map(history.map((x,i)=>[x.title,i]));
+  const recentFamilies=history.slice(0,5).map(x=>x.family);
+  const max=ranked[0].score;
+  // Берём только действительно подходящие песни, но не одну-единственную:
+  // это сохраняет качество и одновременно даёт генератору пространство для вариативности.
+  let pool=ranked.filter(x=>x.score>=Math.max(0,max-14)).slice(0,18);
+  if(pool.length<6) pool=ranked.slice(0,Math.min(12,ranked.length));
+  const weights=pool.map(x=>{
+    const delta=max-x.score;
+    let w=Math.exp(-delta/4.8);
+    const idx=recent.get(x.s.title);
+    if(idx!==undefined){
+      if(idx===0) w*=0.22;
+      else if(idx===1) w*=0.42;
+      else if(idx===2) w*=0.58;
+      else if(idx<6) w*=0.76;
+      else w*=0.9;
+    }
+    const fam=songFamily(x.s);
+    if(recentFamilies[0]===fam) w*=0.55;
+    else if(recentFamilies.slice(0,3).includes(fam)) w*=0.78;
+    return Math.max(0.0001,w);
+  });
+  const total=weights.reduce((a,b)=>a+b,0);
+  let r=Math.random()*total;
+  for(let i=0;i<pool.length;i++){r-=weights[i];if(r<=0){rememberSong(pool[i].s);return pool[i];}}
+  rememberSong(pool[pool.length-1].s);
+  return pool[pool.length-1];
 }
-function getSamplyPage(song){return findSamplyTrack(song)?.page||findSamplyTrack(song)?.url||null;}
-function getSamplyEmbed(song){return findSamplyTrack(song)?.embed||null;}
-
-/* Compatibility helpers used by the generator. */
-function samplyPlayerHTML(song){
-  const embed=getSamplyEmbed(song), page=getSamplyPage(song);
-  if(embed){return `<iframe src="${embed.replace(/&/g,'&amp;')}" frameborder="0" allowtransparency="true" style="width:100%;height:152px;border-radius:16px;border:1px solid rgba(255,255,255,.12)" loading="lazy"></iframe>`;}
-  if(page){return `<div class="samply-fallback"><a href="${page}" target="_blank" rel="noopener">Открыть песню на Samply ↗</a></div>`;}
-  return '<div class="samply-fallback">Плеер для этой песни пока не подключён.</div>';
+function render(p){
+ const ranked=SONGS.map(s=>({s,score:songScore(s,p)})).sort((a,b)=>b.score-a.score);
+ const top=pickSong(ranked)||ranked[0],type=typeFor(p),title=p.pairName||`${p.p1} × ${p.p2}`;
+ lastGeneratedSongTitle=top.s.title;
+ const ph1=p.photo1?`<img src="${esc(p.photo1)}" alt="${esc(p.p1)}">`:`<div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 1</div>`;
+ const ph2=p.photo2?`<img src="${esc(p.photo2)}" alt="${esc(p.p2)}">`:`<div style="height:100%;display:grid;place-items:center;color:#8f8194">фото 2</div>`;
+ const rs=reviewTexts(p,top.s), wishes=wishPool(p,type);
+ return `<section class="result"><div class="aesthetic">
+ <div class="pair-head">
+  <div><div class="portrait">${ph1}</div><div class="pname">${esc(p.p1)}</div></div>
+  <div><div class="portrait">${ph2}</div><div class="pname">${esc(p.p2)}</div></div>
+  <div class="pair-title"><h2>${esc(title)}</h2><div class="type">${esc(type)}</div><div class="quote">${esc(QUOTES[top.s.title]||"«Некоторые истории начинаются задолго до того, как герои это понимают.»")}</div></div>
+ </div>
+ <div class="songbox"><div class="eyebrow">ИХ ПЕСНЯ</div><h3>${esc(top.s.title)}</h3><div class="songmeta">${esc(top.s.album)} · совпадение ${top.score.toFixed(1)}%</div><div class="player">${playerFor(top.s)}</div></div>
+ <details class="top5"><summary>🎧 TOP-5 дополнительных песен</summary><div class="top5-list">${ranked.slice(0,5).map((x,i)=>`<div class="songrow"><span>${i+1}. ${SONG_URLS[x.s.title]?`<a href="${SONG_URLS[x.s.title]}" target="_blank" rel="noopener">${esc(x.s.title)} ↗</a>`:`<a href="#" onclick="return false">${esc(x.s.title)}</a>`}</span><span class="score">${x.score.toFixed(1)}%</span></div>`).join("")}</div></details>
+ <div class="fandom"><h3>💬 ФАНДОМ ГОВОРИТ</h3>
+  <div class="review"><span class="handle">${handles[Math.floor(Math.random()*handles.length)]}</span><p>${esc(rs[0])}</p></div>
+  <div class="review"><span class="handle">${handles[Math.floor(Math.random()*handles.length)]}</span><p>${esc(rs[1])}</p></div>
+  <div class="review"><span class="handle">${handles[Math.floor(Math.random()*handles.length)]}</span><p>${esc(rs[2])}</p></div>
+ </div>
+ <div class="fandom"><h3>💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>
+  ${wishes.map((w,i)=>`<div class="wish ${i===0?'special':''}"><span class="handle">${handles[(i+3)%handles.length]}</span><p>${esc(w)}</p></div>`).join("")}
+ </div>
+ </div></section>`;
 }
-
-/* The complete tested v8.1 generator is embedded below this loader. */
+function randomize(){
+ // Разнообразим именно те поля, которые дают наиболее сильный вклад в песни.
+ document.querySelectorAll(".choice-buttons").forEach(group=>{
+   group.querySelectorAll(".choice").forEach(b=>b.classList.remove("selected"));
+   const target=group.dataset.target,limit=Number(group.dataset.limit||1), buttons=[...group.querySelectorAll(".choice")];
+   state[target]=[];
+   buttons.sort(()=>Math.random()-.5).slice(0,Math.min(limit,buttons.length)).forEach(b=>{b.classList.add("selected");state[target].push(b.dataset.value)});
+ });
+ document.querySelectorAll("#matrix select").forEach(s=>s.selectedIndex=Math.floor(Math.random()*4));
+ ["mood","tempo","obstacle","fearResponse","attraction","noRomance","firstStep","admit1","admit2","edge"].forEach(id=>$(id).selectedIndex=Math.floor(Math.random()*$(id).options.length));
+ $("firstThought1").value=""; $("firstThought2").value="";
+ $("loss1").value=""; $("loss2").value="";
+ $("forgive1").value=""; $("forgive2").value="";
+ $("hiddenTruth").value="";
+ $("songEnding").selectedIndex=Math.floor(Math.random()*$("songEnding").options.length);
+ $("pairColor").selectedIndex=Math.floor(Math.random()*$("pairColor").options.length);
+ return collect();
+}
+let lastGeneratedSongTitle="";
+function renderAll(list){
+ const html=list.map(render).join("");
+ $("results").innerHTML=html;
+ $("results").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function forumHTML(){
+ const p=collect();
+ const ranked=SONGS.map(s=>({s,score:songScore(s,p)})).sort((a,b)=>b.score-a.score);
+ const remembered=lastGeneratedSongTitle?ranked.find(x=>x.s.title===lastGeneratedSongTitle):null;
+ const top=remembered||pickSong(ranked)||ranked[0], title=p.pairName||`${p.p1} × ${p.p2}`, type=typeFor(p);
+ const colorMap={"малиновый":"#ff3b8d","фиолетовый":"#9b5cff","неоново-розовый":"#ff4fd8","кроваво-красный":"#d7194f","чёрный":"#111111","ледяной голубой":"#62dfff","золотой":"#e8c56b","серебряный":"#c9d1dc","изумрудный":"#22d39a"};
+ const pairAccent=colorMap[p.pairColor]||"#ff2f8b";
+ const ph1=p.photo1?`<img src="${esc(p.photo1)}" alt="${esc(p.p1)}" style="width:100%;height:100%;object-fit:cover;display:block;">`:`<div>фото 1</div>`;
+ const ph2=p.photo2?`<img src="${esc(p.photo2)}" alt="${esc(p.p2)}" style="width:100%;height:100%;object-fit:cover;display:block;">`:`<div>фото 2</div>`;
+ const rs=reviewTexts(p,top.s), wishes=wishPool(p,type);
+ const rows=ranked.slice(0,5).map((x,i)=>`<div style="padding:10px 0;border-bottom:1px solid #3b293f;display:flex;justify-content:space-between;gap:12px"><span>${i+1}. ${SONG_URLS[x.s.title]?`<a href="${SONG_URLS[x.s.title]}" target="_blank" style="color:#eee;text-decoration:none">${esc(x.s.title)} ↗</a>`:esc(x.s.title)}</span><b style="color:#ff78b3">${x.score.toFixed(1)}%</b></div>`).join("");
+ const player=SAMPly[top.s.title]?`<iframe src="${SAMPly[top.s.title]}" frameborder="0" allowtransparency="true" style="width:100%;min-height:150px;border:0;border-radius:14px"></iframe>`:`<div style="padding:12px;background:#160f19;border-left:3px solid #ff2f8b;color:#cdbed0">Samply-плеер для этой песни пока не подключён.</div>`;
+ const reviewBlock=rs.map((r,i)=>`<div style="padding:14px 0;border-bottom:1px solid #3b293f"><b style="color:#ff6cab">${handles[i]}</b><div style="margin-top:5px;font:17px/1.5 Georgia,serif">${esc(r)}</div></div>`).join("");
+ const wishBlock=wishes.map((w,i)=>`<div style="padding:14px 0;border-bottom:1px solid #3b293f;${i===0?"border-left:3px solid #39e7ff;padding-left:12px":""}"><b style="color:#ff6cab">${handles[(i+3)%handles.length]}</b><div style="margin-top:5px;font:17px/1.5 Georgia,serif">${esc(w)}</div></div>`).join("");
+ return `<!-- SUGAR FUNERAL · PAIRING AESTHETIC -->
+<div style="max-width:1120px;margin:0 auto;padding:22px;background:#0a0710;color:#f5edf5;font-family:Arial,sans-serif;line-height:1.5;border-radius:24px;border:1px solid ${pairAccent};box-shadow:0 0 35px ${pairAccent}33;background-image:linear-gradient(180deg,#09070ce8,#100914f7),url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2200&q=85');background-size:cover;background-position:center">
+ <div style="display:grid;grid-template-columns:118px 118px 1fr;gap:14px;align-items:center">
+  <div><div style="height:150px;border-radius:16px;overflow:hidden;border:1px solid #6a466e;background:#17121d;display:grid;place-items:center">${ph1}</div><div style="text-align:center;font-weight:bold;margin-top:7px">${esc(p.p1)}</div></div>
+  <div><div style="height:150px;border-radius:16px;overflow:hidden;border:1px solid #6a466e;background:#17121d;display:grid;place-items:center">${ph2}</div><div style="text-align:center;font-weight:bold;margin-top:7px">${esc(p.p2)}</div></div>
+  <div style="text-align:center"><h2 style="font:800 48px/.98 Georgia,serif;margin:0 0 10px">${esc(title)}</h2><div style="color:#ff78b3;font-weight:bold">${esc(type)}</div><div style="font:italic 20px Georgia,serif;color:#ddd0df;margin-top:12px">${esc(QUOTES[top.s.title]||"«Некоторые истории начинаются задолго до того, как герои это понимают.»")}</div></div>
+ </div>
+ <div style="margin-top:22px;padding:20px;border-radius:18px;background:#0b0810dd;border:1px solid #5c3c64">
+  <div style="font-size:11px;letter-spacing:.22em;color:#39e7ff;font-weight:bold">ИХ ПЕСНЯ</div><h3 style="font:800 28px Georgia,serif;margin:4px 0 2px">${esc(top.s.title)}</h3><div style="color:#b9acbd;font-size:13px">${esc(top.s.album)} · совпадение ${top.score.toFixed(1)}%</div><div style="margin-top:14px">${player}</div>
+ </div>
+ <details style="margin-top:20px;background:#0b0810aa;border:1px solid #4a3650;border-radius:14px;padding:12px 16px"><summary style="cursor:pointer;font:800 22px Georgia,serif">🎧 TOP-5 дополнительных песен</summary><div style="margin-top:8px">${rows}</div></details>
+ <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:15px">
+  <span style="background:#241728;border:1px solid #4a3650;border-radius:99px;padding:6px 10px;font-size:12px">цвет: ${esc(p.pairColor)}</span>
+  <span style="background:#241728;border:1px solid #4a3650;border-radius:99px;padding:6px 10px;font-size:12px">финал песни: ${esc(p.songEnding)}</span>
+ </div>
+ <div style="margin-top:25px"><h3 style="font:800 22px Georgia,serif">💬 ФАНДОМ ГОВОРИТ</h3>${reviewBlock}</div>
+ <div style="margin-top:25px"><h3 style="font:800 22px Georgia,serif">💭 МЫ БЫ ХОТЕЛИ ЭТО УВИДЕТЬ В КАНОНЕ</h3>${wishBlock}</div>
+</div>`;
+}
+function showForumHTML(){
+ const modal=$("htmlModal"), box=$("htmlCode");
+ box.value=forumHTML();
+ modal.classList.add("open");
+ box.focus();
+ box.select();
+}
+$("generate").onclick=()=>renderAll([collect()]);
+$("random10").onclick=()=>{const out=[];for(let i=0;i<10;i++)out.push(randomize());renderAll(out)};
+$("exportHtml").onclick=()=>showForumHTML();
+$("clear").onclick=()=>{$("results").innerHTML="";};
+$("resetHistory").onclick=()=>{try{localStorage.removeItem(SONG_HISTORY_KEY);}catch(e){} alert("История последних песен сброшена.");};
 </script>
-<script>
-loadSamplyLinks().finally(()=>{
-  /* The original generator markup/code is preserved in the repository's tested build. */
-  const notice=document.getElementById('app');
-  if(notice && notice.textContent==='Загрузка генератора…') notice.innerHTML='<p style="font-family:Arial,sans-serif;padding:40px">Генератор загружен. Откройте <a href="index-v8.1.html">основную версию</a>.</p>';
-});
-</script>
-</body>
-</html>
+<div class="html-modal" id="htmlModal">
+  <div class="html-modal-inner">
+    <div class="html-modal-head">
+      <div>
+        <div class="section-title" style="margin:0">HTML-КОД ЭСТЕТИКИ</div>
+        <div class="hint">Скопируй код целиком и вставь его в редактор форума.</div>
+      </div>
+      <button class="light html-close" type="button" onclick="document.getElementById(&#39;htmlModal&#39;).classList.remove(&#39;open&#39;)">✕</button>
+    </div>
+    <textarea id="htmlCode" spellcheck="false" readonly=""></textarea>
+    <div class="html-modal-actions">
+      <button class="main" type="button" onclick="navigator.clipboard.writeText(document.getElementById(&#39;htmlCode&#39;).value).then(()=&gt;this.textContent=&#39;✓ СКОПИРОВАНО&#39;)">⧉ СКОПИРОВАТЬ КОД</button>
+      <button class="light" type="button" onclick="document.getElementById(&#39;htmlModal&#39;).classList.remove(&#39;open&#39;)">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+
+</body></html>
