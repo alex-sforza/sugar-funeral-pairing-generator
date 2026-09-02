@@ -88,6 +88,27 @@
     });
   }
 
+  function patchExportedForumHtml(){
+    const box = document.getElementById('htmlCode');
+    if(!box || !ready || !box.value) return;
+
+    // The main generator builds the forum HTML before the external Samply map is loaded,
+    // so its local player variable may fall back to the "not connected" notice.
+    // Replace that notice with the verified embed URL from our local track database.
+    const titleMatch = box.value.match(/ИХ ПЕСНЯ<\/div><h3[^>]*>([\s\S]*?)<\/h3>/i);
+    if(!titleMatch) return;
+
+    const title = titleMatch[1].replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').trim();
+    const track = findTrack(title);
+    if(!track || !track.embed) return;
+
+    const iframe = `<iframe src="${track.embed}" frameborder="0" allowtransparency="true" style="width:100%;border-radius:16px;border:1px solid rgba(255,255,255,0.12);min-height:150px"></iframe>`;
+    const noticeRe = /<div style="[^>]*">Samply-плеер для этой песни пока не подключён\.<\/div>/i;
+    if(noticeRe.test(box.value)){
+      box.value = box.value.replace(noticeRe, iframe);
+    }
+  }
+
   prepareCleanStart();
 
   fetch(DB_URL, {cache:'no-store'})
@@ -107,4 +128,12 @@
       window.SugarFuneralSamply = {tracks, findTrack, upgrade};
     })
     .catch(err => console.warn('[Sugar Funeral] Samply database unavailable:', err));
+
+  // Patch the copied forum HTML after the generator opens its code modal.
+  document.addEventListener('click', event => {
+    const btn = event.target.closest && event.target.closest('#exportHtml');
+    if(btn){
+      setTimeout(patchExportedForumHtml, 0);
+    }
+  });
 })();
