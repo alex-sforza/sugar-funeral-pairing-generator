@@ -52,7 +52,15 @@
   fetch(DB_URL, {cache:'no-store'})
     .then(r => { if(!r.ok) throw new Error('Samply database: '+r.status); return r.json(); })
     .then(db => {
-      tracks = Array.isArray(db) ? db : (db.tracks || []);
+      // The database stores tracks as an object keyed by song title.
+      // Convert it to the array expected by findTrack(), preserving the title.
+      if(Array.isArray(db)){
+        tracks = db;
+      }else if(db && db.tracks && typeof db.tracks === 'object'){
+        tracks = Object.entries(db.tracks).map(([title, data]) => ({title, ...data}));
+      }else{
+        tracks = [];
+      }
       ready = true;
       upgrade();
       const observer = new MutationObserver(() => upgrade());
